@@ -31,3 +31,27 @@
     transform: rotate(360deg);
   }
 }
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 800px; /* Should be removed. Only for demonstration */
+  display:flex;
+  flex-direction: row;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.one{
+  background-color: #aaa;
+}
+
+.two{
+  background-color: #bbb;
+}
