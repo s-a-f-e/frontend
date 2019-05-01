@@ -7,11 +7,11 @@ class App extends React.Component {
   render() {
     return (
       <div class="row">
-        <div class="column one">
+        <div class="column-one one">
         <Image />
         </div>
 
-        <div class="column two">
+        <div class="column-two two">
         <Form />
         </div>
       </div>

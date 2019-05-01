@@ -100,7 +100,7 @@ class OutlinedTextFields extends React.Component {
         />
 
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="formatted-text-mask-input">phone number</InputLabel>
+          <InputLabel htmlFor="formatted-text-mask-input">primary phone number</InputLabel>
           <Input
             value={textmask}
             onChange={this.handleChange('textmask')}
@@ -110,7 +110,7 @@ class OutlinedTextFields extends React.Component {
         </FormControl>
 
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="formatted-text-mask-input">phone number</InputLabel>
+          <InputLabel htmlFor="formatted-text-mask-input">secondary phone number</InputLabel>
           <Input
             value={textmask}
             onChange={this.handleChange('textmask')}
@@ -120,7 +120,7 @@ class OutlinedTextFields extends React.Component {
         </FormControl>
 
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="formatted-text-mask-input">phone number</InputLabel>
+          <InputLabel htmlFor="formatted-text-mask-input"> tertiary phone number</InputLabel>
           <Input
             value={textmask}
             onChange={this.handleChange('textmask')}

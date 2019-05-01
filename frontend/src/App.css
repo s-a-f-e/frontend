@@ -32,13 +32,19 @@
   }
 }
 
-.column {
+.column-one {
   float: left;
   width: 50%;
-  padding: 10px;
   height: 800px; /* Should be removed. Only for demonstration */
-  display:flex;
-  flex-direction: row;
+}
+
+.column-two {
+  position: relative;
+  left:140px;
+  top: 80px;
+  float: right;
+  width: 47%;
+  height: 800px; /* Should be removed. Only for demonstration */
 }
 
 /* Clear floats after the columns */
@@ -53,5 +59,10 @@
 }
 
 .two{
-  background-color: #bbb;
+  background-color: #fff;
+}
+
+.welcome{
+  position: relative;
+  right:140px;
 }

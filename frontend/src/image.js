@@ -6,7 +6,7 @@ const Image = () => {
     return ( 
         <div>
         <Grid>
-            <img src={Baby} alt="" height="400"/>
+            <img src={Baby} alt="" height="800" width="100%"/>
         </Grid>
         </div>
      );
