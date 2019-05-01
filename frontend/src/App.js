@@ -6,9 +6,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Image />
+      
         <Form />
-        </div>
+      </div>
     );
   }
 }

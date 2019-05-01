@@ -1,11 +1,11 @@
 import React from 'react';
-import FButton from './components/buttons/firstname';
- 
+import Inputs from './components/inputfield';
+
 class Form extends React.Component {
   render() {
     return (
       <div>
-        <FButton />
+        <Inputs />
         </div>
     );
   }

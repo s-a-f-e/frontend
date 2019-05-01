@@ -8,7 +8,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0",
-    "react-splitter-layout": "^4.0.0"
+    "react-splitter-layout": "^4.0.0",
+    "react-text-mask": "^5.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
