@@ -39,7 +39,7 @@ html{
 .column-one {
   float: left;
   width: 50%;
-  height: 800px; /* Should be removed. Only for demonstration */
+  height: 900px; /* Should be removed. Only for demonstration */
 }
 
 .column-two {
