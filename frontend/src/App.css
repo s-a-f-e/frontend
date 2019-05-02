@@ -77,6 +77,11 @@ html{
   bottom:130px;
 }
 
+.click{
+  color: black;
+  
+}
+
 .button{
   position: relative;
   right:140px;
