@@ -2,6 +2,8 @@ import React from 'react';
 import Image from './image';
 import Form from './form';
 import './App.css';
+
+// test comment
  
 class App extends React.Component {
   render() {
