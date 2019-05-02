@@ -52,7 +52,9 @@ class OutlinedTextFields extends React.Component {
     lastname: '',
     latitude: '',
     longitude:'',
-    textmask: '(1  )    -    ',
+    textmask: '(  )    -    ',
+    textmask2: '(  )    -    ',
+    textmask3: '(  )    -    ',
   };
 
   handleChange = name => event => {
@@ -118,8 +120,9 @@ class OutlinedTextFields extends React.Component {
         <FormControl className={classes.formControl} class="phone1">
           <InputLabel htmlFor="formatted-text-mask-input">primary phone number</InputLabel>
           <Input
-            value={textmask}
-            onChange={this.handleChange('textmask')}
+            value={this.state.textmask}
+            name="textmask"
+            onChange={this.handleChange('name')}
             id="formatted-text-mask-input"
             inputComponent={TextMaskCustom}
           />
@@ -128,8 +131,9 @@ class OutlinedTextFields extends React.Component {
         <FormControl className={classes.formControl} class="phone2">
           <InputLabel htmlFor="formatted-text-mask-input">secondary phone number</InputLabel>
           <Input
-            value={textmask}
-            onChange={this.handleChange('textmask')}
+            value={this.state.textmask2}
+            name="textmask2"
+            onChange={this.handleChange('name')}
             id="formatted-text-mask-input"
             inputComponent={TextMaskCustom}
           />
@@ -138,8 +142,9 @@ class OutlinedTextFields extends React.Component {
         <FormControl className={classes.formControl} class="phone3">
           <InputLabel htmlFor="formatted-text-mask-input"> tertiary phone number</InputLabel>
           <Input
-            value={textmask}
-            onChange={this.handleChange('textmask')}
+            value={this.state.textmask3}
+            name="textmask3"
+            onChange={this.handleChange('name')}
             id="formatted-text-mask-input"
             inputComponent={TextMaskCustom}
           />
