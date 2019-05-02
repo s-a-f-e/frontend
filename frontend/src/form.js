@@ -8,7 +8,7 @@ class Form extends React.Component {
       <div>
           <h1 class="welcome">Welcome to Safe Mothers, Safe Babies</h1>
           <br />
-          <p class="welcome">Let's get you all set up so you can verify 
+          <p class="welcome2">Let's get you all set up so you can verify 
               your information and begin setting up your profile!</p>
               <br /> <br />
         <Inputs />
