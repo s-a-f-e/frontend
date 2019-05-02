@@ -23,6 +23,10 @@
   color: #61dafb;
 }
 
+html{
+  overflow-x: hidden;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -69,7 +73,14 @@
 
 .privacy{
   position: relative;
-  right:20px;
+  right:130px;
+  bottom:130px;
+}
+
+.button{
+  position: relative;
+  right:140px;
+  bottom:120px;
 }
 
 .thename{
@@ -83,7 +94,7 @@
   bottom:80px;
 }
 
-.home{
+.lat{
   position: relative;
   right:100px;
   bottom: 80px;

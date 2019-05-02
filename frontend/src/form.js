@@ -7,12 +7,14 @@ class Form extends React.Component {
     return (
       <div>
           <h1 class="welcome">Welcome to Safe Mothers, Safe Babies</h1>
+          <br />
           <p class="welcome">Let's get you all set up so you can verify 
               your information and begin setting up your profile!</p>
+              <br /> <br />
         <Inputs />
         <br />
-        <p class="privacy">I agree to the <a>Terms, Privacy Policy</a> and <a>Fees</a></p>
-        <div class="privacy">
+        <p class="privacy">By clicking submit you are agreeing to the <a>Terms and Conditions, Privacy Policy</a>, and <a>Fees</a>.</p>
+        <div class="button">
         <Button />
         </div>
         <p></p>

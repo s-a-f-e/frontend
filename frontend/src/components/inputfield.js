@@ -91,7 +91,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         </div>
-        <div class="home">
+        <div class="lat">
         <TextField
           id="outlined-name"
           label="Latitude"
