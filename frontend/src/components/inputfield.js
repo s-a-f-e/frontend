@@ -13,7 +13,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'column',
-    width: 300,
+    width: 200,
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -23,7 +23,7 @@ const styles = theme => ({
     marginTop: 16,
   },
   menu: {
-    width: 200,
+    width: 100,
   },
 });
 function TextMaskCustom(props) {
@@ -50,7 +50,8 @@ class OutlinedTextFields extends React.Component {
   state = {
     firstname: '',
     lastname: '',
-    homebase: '',
+    latitude: '',
+    longitude:'',
     textmask: '(1  )    -    ',
   };
 
@@ -66,6 +67,7 @@ class OutlinedTextFields extends React.Component {
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
+        <div class="thename">
         <TextField
           id="outlined-name"
           label="First Name"
@@ -76,7 +78,8 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
+        </div>
+        <div class="thenameis">
         <TextField
           id="outlined-name"
           label=" Last Name"
@@ -87,19 +90,32 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
+        </div>
+        <div class="home">
         <TextField
           id="outlined-name"
-          label="Home Base"
-          name="homebase"
+          label="Latitude"
+          name="latitude"
           className={classes.textField}
-          value={this.state.homebase}
+          value={this.state.latitude}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
         />
-
-        <FormControl className={classes.formControl}>
+        <div class="long">
+        <TextField
+          id="outlined-name"
+          label="Longitude"
+          name="longitude"
+          className={classes.textField}
+          value={this.state.longitude}
+          onChange={this.handleChange('name')}
+          margin="normal"
+          variant="outlined"
+        />
+        </div>
+        </div>
+        <FormControl className={classes.formControl} class="phone1">
           <InputLabel htmlFor="formatted-text-mask-input">primary phone number</InputLabel>
           <Input
             value={textmask}
@@ -109,7 +125,7 @@ class OutlinedTextFields extends React.Component {
           />
         </FormControl>
 
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} class="phone2">
           <InputLabel htmlFor="formatted-text-mask-input">secondary phone number</InputLabel>
           <Input
             value={textmask}
@@ -119,7 +135,7 @@ class OutlinedTextFields extends React.Component {
           />
         </FormControl>
 
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} class="phone3">
           <InputLabel htmlFor="formatted-text-mask-input"> tertiary phone number</InputLabel>
           <Input
             value={textmask}

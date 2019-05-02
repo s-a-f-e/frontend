@@ -71,3 +71,44 @@
   position: relative;
   right:20px;
 }
+
+.thename{
+  position: relative;
+  right:100px;
+}
+
+.thenameis{
+  position: relative;
+  left: 120px;
+  bottom:80px;
+}
+
+.home{
+  position: relative;
+  right:100px;
+  bottom: 80px;
+}
+
+.long{
+  position:relative;
+  left:220px;
+  bottom:80px;
+}
+
+.phone1{
+  position: relative;
+  right:90px;
+  bottom:140px;
+}
+
+.phone2{
+  position: relative;
+  left:130px;
+  bottom:190px;
+}
+
+.phone3{
+  position: relative;
+  right:90px;
+  bottom:149px;
+}
