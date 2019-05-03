@@ -63,6 +63,91 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
+
+
+  formSubmit = e => {
+    e.preventDefault();
+    const err = this.validate();
+    if (!err) {
+      this.setState({
+        buttonText: '...sending'
+      });
+      console.log('hello this an success message');
+      let data = {
+        name: this.state.name,
+        email: this.state.email,
+        message: this.state.message
+      };
+      axios
+        .post("https://mme-backend.herokuapp.com/api/v1", data)
+        .then(res => {
+          this.setState({ sent: true, buttonText: 'Message has been sent' });
+        })
+        .catch(() => {
+          this.setState({ buttonText: 'Message has failed to send' });
+          console.log('Message not sent');
+        });
+
+      // clear form
+      this.setState({
+        name: '',
+        nameError: '',
+        email: '',
+        emailError: '',
+        message: '',
+        messageError: '',
+        emailTextFieldError: false,
+        nameTextFieldError: false,
+        messageTextFieldError: false
+      });
+    }
+  };
+
+
+  validate = () => {
+    let isError = false;
+    if (!this.state.name.length) {
+      isError = true;
+      this.setState({
+        nameError: 'Cannot be empty',
+        nameTextFieldError: true
+      });
+    }
+    else {
+      this.setState({
+        nameError: '',
+        nameTextFieldError: false
+      });
+    }
+    if (!this.state.message.length) {
+      isError = true;
+      this.setState({
+        messageError: 'Cannot be empty',
+        messageTextFieldError: true
+      });
+    }
+    else{
+      this.setState({
+        messageError: '',
+        messageTextFieldError: false
+      });
+    }
+    if (this.state.email.indexOf('@') === -1) {
+      isError = true;
+      this.setState({
+        emailError: 'This is not an email',
+        emailTextFieldError: true
+      });
+    }
+    else {
+      this.setState({
+        emailError: '',
+        emailTextFieldError: false
+      });
+    }
+    return isError;
+  };
+
   render() {
     const { classes } = this.props;
     const { textmask } = this.state;
