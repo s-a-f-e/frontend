@@ -1,7 +1,9 @@
 import React from 'react';
 import Image from './image';
-import Form from './form';
+import DriverForm from './driverform';
+import MotherForm from './motherform';
 import './App.css';
+import { Route, Switch, Redirect } from 'react-router-dom';
  
 class App extends React.Component {
   render() {
@@ -12,12 +14,18 @@ class App extends React.Component {
         </div>
 
         <div class="column-two two">
-        <Form />
+        <Switch>
+          <Route path='/' exact render ={props => (<DriverForm {...props} />)} />
+          <Route path='/mothers' exact render ={props => (<MotherForm {...props} />)} />
+        </Switch>
         </div>
+
+
+        
       </div>
 
     );
   }
 }
- 
+
 export default App;

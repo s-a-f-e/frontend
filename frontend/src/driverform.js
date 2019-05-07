@@ -1,11 +1,18 @@
 import React from 'react';
-import Inputs from './components/inputfield';
+import Inputs from './components/driverinputfield';
 import Button from './components/buttons/button';
+import SwitchPageButton from './components/buttons/MothersView';
+import {Link} from 'react-router-dom';
 
-class Form extends React.Component {
+class DriverForm extends React.Component {
   render() {
     return (
       <div>
+        <div class='switchpage'>
+        <Link to='/mothers'>
+          <SwitchPageButton />
+        </Link>
+        </div>
           <h1 class="welcome">Welcome to Safe Mothers, Safe Babies</h1>
           <br />
           <p class="welcome2">Let's get you all set up so you can verify 
@@ -23,4 +30,4 @@ class Form extends React.Component {
   }
 }
  
-export default Form;
+export default DriverForm;
