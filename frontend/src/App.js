@@ -3,7 +3,12 @@ import Image from './image';
 import DriverForm from './driverform';
 import MotherForm from './motherform';
 import './App.css';
+<<<<<<< HEAD
 import { Route, Switch, Redirect } from 'react-router-dom';
+=======
+
+// test comment
+>>>>>>> f232336f0bc0ecb3abca4786e3b31a6c102ba301
  
 class App extends React.Component {
   render() {
