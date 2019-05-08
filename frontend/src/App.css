@@ -136,3 +136,15 @@ html{
   right:90px;
   bottom:149px;
 }
+
+.logo{
+  position: relative;
+  bottom:770px;
+  left:50px;
+}
+
+.switchpage{
+  position: relative;
+  bottom:20px;
+  left:380px;
+}
