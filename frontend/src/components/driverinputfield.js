@@ -77,9 +77,9 @@ class OutlinedTextFields extends React.Component {
     lastname: "",
     latitude: "",
     longitude: "",
-    textmask: "(  )    -    ",
-    textmask2: "(  )    -    ",
-    textmask3: "(  )    -    "
+    textmask: " ",
+    textmask2: " ",
+    textmask3: " "
   };
 
   componentDidMount() {
@@ -97,13 +97,73 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
+  postData(nums) {
+    const token = localStorage.getItem("token");
+    const requestOptions = {
+      headers: { Authorization: token }
+    };
+    const request = {
+      name: this.state.firstname + " " + this.state.lastname,
+      phone: "",
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
+      available: true
+    };
+    for (let i of nums) {
+      request.phone = i;
+      axios
+        .post(
+          "http://saferides.herokuapp.com/api/drivers/",
+          request,
+          requestOptions
+        )
+        .then(res => {
+          console.log("response data: ", res.data);
+        })
+        .catch(err => {
+          console.error("axios err:", err);
+        });
+      console.log("from post data: ", request);
+    }
+  }
+
   handleSubmit = event => {
-    console.log({ config });
+    // console.log({ config });
+    let phones = [this.state.textmask];
+    const token = localStorage.getItem("token");
+    console.log(this.state);
+    // console.log(`mask1: ${this.state.textmask.length}`);
+    // console.log(`mask3: ${this.state.textmask3.length}`);
+
+    const requestOptions = {
+      headers: { Authorization: token }
+    };
+
+    // const request = {
+    //   name: this.state.firstname + " " + this.state.lastname,
+    //   phone: this.state.textmask,
+    //   latitude: 0.7657,
+    //   longitude: 89.61,
+    //   available: true
+    // };
+    if (this.state.textmask2.length > 1) {
+      phones.push(this.state.textmask2);
+    } else if (this.state.textmask3.length > 1) {
+      phones.push(this.state.textmask3);
+    }
+    this.postData(phones);
+    // axios.defaults.withCredentials = true;
     // axios
-    //   .post("https://saferides.herokuapp.com/api-token-auth/", config)
-    //   .then(response => {
-    //     localStorage.setItem("token", "token " + response.data.token);
-    //     console.log(response.data.token);
+    //   .post(
+    //     "http://saferides.herokuapp.com/api/drivers/",
+    //     request,
+    //     requestOptions
+    //   )
+    //   .then(res => {
+    //     console.log("response data: ", res.data);
+    //   })
+    //   .catch(err => {
+    //     console.error("axios err:", err);
     //   });
   };
 
@@ -217,7 +277,7 @@ class OutlinedTextFields extends React.Component {
                   className={classes.button}
                   onClick={this.handleSubmit}
                 >
-                  Add Property
+                  Submit
                 </Button>
               </div>
             </Grid>
