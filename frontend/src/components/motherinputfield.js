@@ -62,24 +62,27 @@ class OutlinedTextFields extends React.Component {
   addMother = (event) => {
     event.preventDefault();
      const info = {
-      firstname: this.firstname,
-      lastname: this.lastname,
-      latitude: this.latitude,
-      longitude: this.longitude,
-      textmask: this.textmask,
+      name: `${this.state.firstname} ${this.state.lastname}`,
+      latitude: +this.state.latitude,
+      longitude: +this.state.longitude,
+      phone: this.state.textmask,
+      village: "hi"
     };
+    console.table("info", info)
+    //axios.defaults.withCredentials = true
      const header = {
         headers: {
-          authorization: `Token ${localStorage.getItem('token')}`
+          authorization: `token ${localStorage.getItem('token')}`
         }
       };
+    console.log(`Token ${localStorage.getItem('token')}`)
      axios
-    .post(`/api/mothers`, info, header)
+    .post(`https://saferides.herokuapp.com/api/mothers/`, info, header)
     .then(response => {
-
+      console.log(response.data)
     })  
     .catch(error => {
-        alert(error.response.data.error);
+        alert(error);
     });
 };
 
