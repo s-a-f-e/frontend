@@ -6,7 +6,8 @@ import MaskedInput from 'react-text-mask';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const styles = theme => ({
   container: {
@@ -25,6 +26,9 @@ const styles = theme => ({
   menu: {
     width: 100,
   },
+  button: {
+    margin: theme.spacing.unit
+  }
 });
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
@@ -54,6 +58,30 @@ class OutlinedTextFields extends React.Component {
     longitude:'',
     textmask: '(  )    -    ',
   };
+
+  addMother = (event) => {
+    event.preventDefault();
+     const info = {
+      firstname: this.firstname,
+      lastname: this.lastname,
+      latitude: this.latitude,
+      longitude: this.longitude,
+      textmask: this.textmask,
+    };
+     const header = {
+        headers: {
+          authorization: `Token ${localStorage.getItem('token')}`
+        }
+      };
+     axios
+    .post(`/api/mothers`, info, header)
+    .then(response => {
+
+    })  
+    .catch(error => {
+        alert(error.response.data.error);
+    });
+};
 
   handleChange = name => event => {
     this.setState({
@@ -125,6 +153,15 @@ class OutlinedTextFields extends React.Component {
             inputComponent={TextMaskCustom}
           />
         </FormControl>
+        <Button
+          variant="contained"
+          size="medium"
+          color="primary"
+          className={classes.margin}
+          onClick={this.addMother}
+        >
+          Submit
+        </Button>
 
     </form>
     );
