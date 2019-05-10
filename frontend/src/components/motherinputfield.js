@@ -72,7 +72,7 @@ class OutlinedTextFields extends React.Component {
     //axios.defaults.withCredentials = true
      const header = {
         headers: {
-          authorization: `token ${localStorage.getItem('token')}`
+          authorization: `${localStorage.getItem('token')}`
         }
       };
     console.log(`Token ${localStorage.getItem('token')}`)
