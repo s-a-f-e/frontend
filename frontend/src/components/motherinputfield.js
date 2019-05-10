@@ -6,7 +6,8 @@ import MaskedInput from 'react-text-mask';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const styles = theme => ({
   container: {
@@ -24,6 +25,9 @@ const styles = theme => ({
   },
   menu: {
     width: 100,
+  },
+  button: {
+    margin: theme.spacing.unit
   },
 });
 function TextMaskCustom(props) {
@@ -54,6 +58,33 @@ class OutlinedTextFields extends React.Component {
     longitude:'',
     textmask: '(  )    -    ',
   };
+
+  addMother = (event) => {
+    event.preventDefault();
+     const info = {
+      name: `${this.state.firstname} ${this.state.lastname}`,
+      latitude: +this.state.latitude,
+      longitude: +this.state.longitude,
+      phone: this.state.textmask,
+      village: "hi"
+    };
+    console.table("info", info)
+    //axios.defaults.withCredentials = true
+     const header = {
+        headers: {
+          authorization: `token ${localStorage.getItem('token')}`
+        }
+      };
+    console.log(`Token ${localStorage.getItem('token')}`)
+     axios
+    .post(`https://saferides.herokuapp.com/api/mothers/`, info, header)
+    .then(response => {
+      console.log(response.data)
+    })  
+    .catch(error => {
+        alert(error);
+    });
+};
 
   handleChange = name => event => {
     this.setState({
@@ -125,7 +156,15 @@ class OutlinedTextFields extends React.Component {
             inputComponent={TextMaskCustom}
           />
         </FormControl>
-
+        <Button
+          variant="contained"
+          size="medium"
+          color="primary"
+          className={classes.margin}
+          onClick={this.addMother}
+        >
+          Submit
+        </Button>
     </form>
     );
   }
