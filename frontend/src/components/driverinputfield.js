@@ -69,11 +69,13 @@ class OutlinedTextFields extends React.Component {
   };
 
   componentDidMount() {
+    console.log("user with process", process.env.REACT_APP_username);
+    console.log("user with env", env.REACT_APP_username);
     axios
       .post('https://saferides.herokuapp.com/api-token-auth/', config)
       .then(response => {
         localStorage.setItem('token', 'token ' + response.data.token);
-        // console.log(response.data.token);
+        console.log(response.data.token);
       });
   }
 
