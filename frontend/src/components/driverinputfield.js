@@ -1,40 +1,40 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import MaskedInput from "react-text-mask";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import axios from "axios";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import MaskedInput from 'react-text-mask';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
 
 const config = {
   username: process.env.REACT_APP_username,
-  password: process.env.REACT_APP_password
+  password: process.env.REACT_APP_password,
 };
 
 const styles = theme => ({
   container: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "column",
-    width: 200
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    width: 200,
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing.unit,
   },
   dense: {
-    marginTop: 16
+    marginTop: 16,
   },
   menu: {
-    width: 100
+    width: 100,
   },
   button: {
-    margin: theme.spacing.unit
-  }
+    margin: theme.spacing.unit,
+  },
 });
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
@@ -45,135 +45,112 @@ function TextMaskCustom(props) {
       ref={ref => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      mask={[
-        "(",
-        /[1-9]/,
-        /\d/,
-        /\d/,
-        ")",
-        " ",
-        /\d/,
-        /\d/,
-        /\d/,
-        "-",
-        /\d/,
-        /\d/,
-        /\d/,
-        /\d/
-      ]}
-      placeholderChar={"\u2000"}
+      /* prettier-ignore */
+      mask={["(",/[1-9]/,/\d/,/\d/,")"," ",/\d/,/\d/,/\d/,"-",/\d/,/\d/,/\d/,/\d/]}
+      placeholderChar={'\u2000'}
       showMask
     />
   );
 }
 
 TextMaskCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired
+  inputRef: PropTypes.func.isRequired,
 };
 
 class OutlinedTextFields extends React.Component {
   state = {
-    firstname: "",
-    lastname: "",
-    latitude: "",
-    longitude: "",
-    textmask: " ",
-    textmask2: " ",
-    textmask3: " "
+    firstname: '',
+    lastname: '',
+    latitude: '',
+    longitude: '',
+    textmask1: ' ',
+    textmask2: ' ',
+    textmask3: ' ',
   };
 
   componentDidMount() {
     axios
-      .post("https://saferides.herokuapp.com/api-token-auth/", config)
+      .post('https://saferides.herokuapp.com/api-token-auth/', config)
       .then(response => {
-        localStorage.setItem("token", "token " + response.data.token);
+        localStorage.setItem('token', 'token ' + response.data.token);
         // console.log(response.data.token);
       });
   }
 
   handleChange = name => event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
-  postData(nums) {
-    const token = localStorage.getItem("token");
-    const requestOptions = {
-      headers: { Authorization: token }
-    };
-    const request = {
-      name: this.state.firstname + " " + this.state.lastname,
-      phone: "",
-      latitude: this.state.latitude,
-      longitude: this.state.longitude,
-      available: true
-    };
-    for (let i of nums) {
-      request.phone = i;
-      axios
+  // asynchronously post the drivers
+  postData = async (phones, request, requestOptions) => {
+    for (let phone of phones) {
+      request.phone = phone;
+
+      await axios
         .post(
-          "http://saferides.herokuapp.com/api/drivers/",
+          'https://saferides.herokuapp.com/api/drivers/',
           request,
-          requestOptions
+          requestOptions,
         )
         .then(res => {
-          console.log("response data: ", res.data);
+          console.log('response data: ', res.data);
         })
         .catch(err => {
-          console.error("axios err:", err);
+          console.error('axios err:', err);
         });
-      console.log("from post data: ", request);
     }
-  }
+  };
 
   handleSubmit = event => {
-    // console.log({ config });
-    let phones = [this.state.textmask];
-    const token = localStorage.getItem("token");
-    console.log(this.state);
-    // console.log(`mask1: ${this.state.textmask.length}`);
-    // console.log(`mask3: ${this.state.textmask3.length}`);
+    let phones = [];
+    const token = localStorage.getItem('token');
 
     const requestOptions = {
-      headers: { Authorization: token }
+      headers: { Authorization: token },
     };
 
-    // const request = {
-    //   name: this.state.firstname + " " + this.state.lastname,
-    //   phone: this.state.textmask,
-    //   latitude: 0.7657,
-    //   longitude: 89.61,
-    //   available: true
-    // };
+    const request = {
+      name: this.state.firstname + ' ' + this.state.lastname,
+      phone: '',
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
+      available: true,
+    };
+
+    // build the phones array with the given numbers
+    if (this.state.textmask1.length > 1) {
+      phones.push(this.state.textmask1);
+    }
+
     if (this.state.textmask2.length > 1) {
       phones.push(this.state.textmask2);
-    } else if (this.state.textmask3.length > 1) {
+    }
+
+    if (this.state.textmask3.length > 1) {
       phones.push(this.state.textmask3);
     }
-    this.postData(phones);
-    // axios.defaults.withCredentials = true;
-    // axios
-    //   .post(
-    //     "http://saferides.herokuapp.com/api/drivers/",
-    //     request,
-    //     requestOptions
-    //   )
-    //   .then(res => {
-    //     console.log("response data: ", res.data);
-    //   })
-    //   .catch(err => {
-    //     console.error("axios err:", err);
-    //   });
+
+    // call the async post function
+    this.postData(phones, request, requestOptions);
+
+    // clear state after posted to db
+    this.setState({
+      firstname: '',
+      lastname: '',
+      latitude: '',
+      longitude: '',
+      textmask1: ' ',
+      textmask2: ' ',
+      textmask3: ' ',
+    });
   };
 
   render() {
     const { classes } = this.props;
-    const { textmask } = this.state;
     const addBtnClass = {
-      display: "flex",
-      width: "111px",
-      justifyContent: "center"
+      display: 'flex',
+      width: '111px',
+      justifyContent: 'center',
     };
 
     return (
@@ -188,7 +165,7 @@ class OutlinedTextFields extends React.Component {
                   name="firstname"
                   className={classes.textField}
                   value={this.state.firstname}
-                  onChange={this.handleChange("name")}
+                  onChange={this.handleChange('name')}
                   margin="normal"
                   variant="outlined"
                 />
@@ -200,7 +177,7 @@ class OutlinedTextFields extends React.Component {
                   name="lastname"
                   className={classes.textField}
                   value={this.state.lastname}
-                  onChange={this.handleChange("name")}
+                  onChange={this.handleChange('name')}
                   margin="normal"
                   variant="outlined"
                 />
@@ -212,7 +189,7 @@ class OutlinedTextFields extends React.Component {
                   name="latitude"
                   className={classes.textField}
                   value={this.state.latitude}
-                  onChange={this.handleChange("name")}
+                  onChange={this.handleChange('name')}
                   margin="normal"
                   variant="outlined"
                 />
@@ -223,7 +200,7 @@ class OutlinedTextFields extends React.Component {
                     name="longitude"
                     className={classes.textField}
                     value={this.state.longitude}
-                    onChange={this.handleChange("name")}
+                    onChange={this.handleChange('name')}
                     margin="normal"
                     variant="outlined"
                   />
@@ -234,9 +211,9 @@ class OutlinedTextFields extends React.Component {
                   primary phone number
                 </InputLabel>
                 <Input
-                  value={this.state.textmask}
-                  name="textmask"
-                  onChange={this.handleChange("name")}
+                  value={this.state.textmask1}
+                  name="textmask1"
+                  onChange={this.handleChange('name')}
                   id="formatted-text-mask-input"
                   inputComponent={TextMaskCustom}
                 />
@@ -249,7 +226,7 @@ class OutlinedTextFields extends React.Component {
                 <Input
                   value={this.state.textmask2}
                   name="textmask2"
-                  onChange={this.handleChange("name")}
+                  onChange={this.handleChange('name')}
                   id="formatted-text-mask-input"
                   inputComponent={TextMaskCustom}
                 />
@@ -257,13 +234,13 @@ class OutlinedTextFields extends React.Component {
 
               <FormControl className={classes.formControl} class="phone3">
                 <InputLabel htmlFor="formatted-text-mask-input">
-                  {" "}
+                  {' '}
                   tertiary phone number
                 </InputLabel>
                 <Input
                   value={this.state.textmask3}
                   name="textmask3"
-                  onChange={this.handleChange("name")}
+                  onChange={this.handleChange('name')}
                   id="formatted-text-mask-input"
                   inputComponent={TextMaskCustom}
                 />
@@ -289,7 +266,7 @@ class OutlinedTextFields extends React.Component {
 }
 
 OutlinedTextFields.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(OutlinedTextFields);
