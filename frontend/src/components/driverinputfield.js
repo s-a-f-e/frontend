@@ -10,11 +10,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
-const config = {
-  username: process.env.REACT_APP_username,
-  password: process.env.REACT_APP_password,
-};
-
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -69,13 +64,16 @@ class OutlinedTextFields extends React.Component {
   };
 
   componentDidMount() {
-    console.log("user with process", process.env.REACT_APP_username);
-    //console.log("user with env", env.REACT_APP_username);
+    const config = {
+      username: process.env.REACT_APP_username,
+      password: process.env.REACT_APP_password,
+    };
+    
     axios
       .post('https://saferides.herokuapp.com/api-token-auth/', config)
       .then(response => {
         localStorage.setItem('token', 'token ' + response.data.token);
-        console.log(response.data.token);
+        //console.log(response.data.token);
       });
   }
 
