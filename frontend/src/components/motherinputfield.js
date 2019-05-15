@@ -80,7 +80,36 @@ class OutlinedTextFields extends React.Component {
     snackbarVariant: '',
     village: '',
     checkedA: true,
+    villageDB: [],
   };
+
+  componentDidMount() {
+    const header = {
+      headers: {
+        authorization: `${localStorage.getItem('token')}`,
+      },
+    };
+
+    const villages = [];
+
+    axios
+      .get(`https://saferides.herokuapp.com/api/villages/`, header)
+      .then(response => {
+        // console.log('CDM get villages', response.data);
+        // console.log('response.data[0]: ', response.data[0]);
+        for (let villa of response.data) {
+          // console.log('for entry of response.data', villa.name);
+          villages.push(villa.name.toLowerCase());
+        }
+        this.setState({
+          villageDB: villages,
+        });
+        // console.log('villages: ', villages);
+      })
+      .catch(err => {
+        console.error('axios err:', err);
+      });
+  }
 
   addMother = event => {
     event.preventDefault();
@@ -110,7 +139,7 @@ class OutlinedTextFields extends React.Component {
             snackbarVariant: 'success',
             description: '',
           });
-          console.log(response.data);
+          // console.log(response.data);
         })
         .catch(error => {
           alert(error);
