@@ -10,6 +10,9 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import CustSnackbar from './snackbar/CustSnackbar';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 const styles = theme => ({
   container: {
@@ -75,6 +78,8 @@ class OutlinedTextFields extends React.Component {
     openSnackbar: false,
     snackbarMessage: '',
     snackbarVariant: '',
+    village: '',
+    checkedA: true,
   };
 
   addMother = event => {
@@ -84,7 +89,7 @@ class OutlinedTextFields extends React.Component {
       latitude: +this.state.latitude,
       longitude: +this.state.longitude,
       phone: this.state.textmask,
-      village: 'hi',
+      village: this.state.village || 'coordinates entered',
     };
     console.table('info', info);
     //axios.defaults.withCredentials = true
@@ -124,6 +129,7 @@ class OutlinedTextFields extends React.Component {
         latitude: '',
         longitude: '',
         textmask: ' ',
+        village: '',
       });
     } else {
       this.setState({
@@ -141,6 +147,10 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
+  handlerChanger = name => event => {
+    this.setState({ [name]: event.target.checked });
+  };
+
   snackbarClose = () => {
     this.setState({
       openSnackbar: false,
@@ -150,6 +160,8 @@ class OutlinedTextFields extends React.Component {
   render() {
     const { classes } = this.props;
     const { textmask } = this.state;
+    const disabled = !!this.state.checkedA;
+    const enabled = !this.state.checkedA;
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
@@ -180,8 +192,22 @@ class OutlinedTextFields extends React.Component {
             variant="outlined"
           />
         </div>
+        <FormGroup class="switch">
+          <FormControlLabel
+            control={
+              <Switch
+                checked={this.state.checkedA}
+                onChange={this.handlerChanger('checkedA')}
+                value="checkedA"
+                color="primary"
+              />
+            }
+            label="Coordinates / Village"
+          />
+        </FormGroup>
         <div class="lat">
           <TextField
+            disabled={enabled}
             id="outlined-name"
             label="Latitude"
             name="latitude"
@@ -193,6 +219,7 @@ class OutlinedTextFields extends React.Component {
           />
           <div class="long">
             <TextField
+              disabled={enabled}
               id="outlined-name"
               label="Longitude"
               name="longitude"
@@ -203,8 +230,22 @@ class OutlinedTextFields extends React.Component {
               variant="outlined"
             />
           </div>
+          <div class="village">
+            <TextField
+              disabled={disabled}
+              id="outlined-name"
+              label=" Village Name"
+              name="village"
+              className={classes.textField}
+              value={this.state.village}
+              onChange={this.handleChange('name')}
+              margin="normal"
+              variant="outlined"
+            />
+          </div>
         </div>
-        <FormControl className={classes.formControl} class="phone1">
+
+        <FormControl className={classes.formControl} class="phone4">
           <InputLabel htmlFor="formatted-text-mask-input">
             primary phone number
           </InputLabel>
