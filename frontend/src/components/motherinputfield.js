@@ -13,6 +13,8 @@ import CustSnackbar from './snackbar/CustSnackbar';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import Select from 'react-select';
+import NoSsr from '@material-ui/core/NoSsr';
 
 const styles = theme => ({
   container: {
@@ -24,6 +26,11 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+  },
+  select: {
+    width: 185,
+    left: 7,
+    marginTop: 20,
   },
   dense: {
     marginTop: 16,
@@ -78,7 +85,7 @@ class OutlinedTextFields extends React.Component {
     openSnackbar: false,
     snackbarMessage: '',
     snackbarVariant: '',
-    village: '',
+    village: null,
     checkedA: true,
     villageDB: [],
   };
@@ -95,16 +102,13 @@ class OutlinedTextFields extends React.Component {
     axios
       .get(`https://saferides.herokuapp.com/api/villages/`, header)
       .then(response => {
-        // console.log('CDM get villages', response.data);
-        // console.log('response.data[0]: ', response.data[0]);
         for (let villa of response.data) {
-          // console.log('for entry of response.data', villa.name);
-          villages.push(villa.name.toLowerCase());
+          villages.push({ label: villa.name });
         }
         this.setState({
           villageDB: villages,
         });
-        // console.log('villages: ', villages);
+        console.log('villages: ', villages);
       })
       .catch(err => {
         console.error('axios err:', err);
@@ -118,17 +122,17 @@ class OutlinedTextFields extends React.Component {
       latitude: +this.state.latitude,
       longitude: +this.state.longitude,
       phone: this.state.textmask,
-      village: this.state.village || 'coordinates entered',
+      village: this.state.village.value || 'coordinates entered',
     };
     console.table('info', info);
-    //axios.defaults.withCredentials = true
+
     const header = {
       headers: {
         authorization: `${localStorage.getItem('token')}`,
       },
     };
     console.log(`Token ${localStorage.getItem('token')}`);
-    // console.log('this.state.textmask', this.state.textmask.length);
+
     if (this.state.textmask.length > 1) {
       axios
         .post(`https://saferides.herokuapp.com/api/mothers/`, info, header)
@@ -139,7 +143,6 @@ class OutlinedTextFields extends React.Component {
             snackbarVariant: 'success',
             description: '',
           });
-          // console.log(response.data);
         })
         .catch(error => {
           alert(error);
@@ -180,6 +183,12 @@ class OutlinedTextFields extends React.Component {
     this.setState({ [name]: event.target.checked });
   };
 
+  handledChanged = name => value => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
   snackbarClose = () => {
     this.setState({
       openSnackbar: false,
@@ -191,6 +200,10 @@ class OutlinedTextFields extends React.Component {
     const { textmask } = this.state;
     const disabled = !!this.state.checkedA;
     const enabled = !this.state.checkedA;
+    const options = this.state.villageDB.map(suggestion => ({
+      value: suggestion.label,
+      label: suggestion.label,
+    }));
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
@@ -260,7 +273,7 @@ class OutlinedTextFields extends React.Component {
             />
           </div>
           <div class="village">
-            <TextField
+            {/* <TextField
               disabled={disabled}
               id="outlined-name"
               label=" Village Name"
@@ -270,7 +283,19 @@ class OutlinedTextFields extends React.Component {
               onChange={this.handleChange('name')}
               margin="normal"
               variant="outlined"
-            />
+            /> */}
+            <NoSsr>
+              <Select
+                isDisabled={disabled}
+                className={classes.select}
+                classes={classes}
+                options={options}
+                value={this.state.village}
+                onChange={this.handledChanged('village')}
+                placeholder="Village Name"
+                isClearable
+              />
+            </NoSsr>
           </div>
         </div>
 
@@ -286,6 +311,21 @@ class OutlinedTextFields extends React.Component {
             inputComponent={TextMaskCustom}
           />
         </FormControl>
+        {/* <div class="ssr">
+          <NoSsr>
+            <Select
+              isDisabled={disabled}
+              className={classes.select}
+              classes={classes}
+              options={options}
+              // components={components}
+              value={this.state.single}
+              onChange={this.handledChanged('single')}
+              placeholder="Village Name"
+              isClearable
+            />
+          </NoSsr>
+        </div> */}
         <Button
           variant="contained"
           size="medium"
