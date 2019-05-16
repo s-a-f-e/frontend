@@ -146,8 +146,14 @@ html {
 .phone4 {
   position: relative;
   right: -130px;
-  bottom: 218px;
+  bottom: 208px;
 }
+
+/* .ssr {
+  position: relative;
+  right: -120px;
+  bottom: 200px;
+} */
 
 .switch {
   position: relative;
