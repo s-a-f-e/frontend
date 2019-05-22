@@ -15,6 +15,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Select from 'react-select';
 import NoSsr from '@material-ui/core/NoSsr';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   container: {
@@ -326,11 +327,11 @@ class OutlinedTextFields extends React.Component {
             />
           </NoSsr>
         </div> */}
+        <Grid item xs={12} md={2}>
         <Button
           variant="contained"
-          size="medium"
           color="primary"
-          className={classes.margin}
+          className={classes.button}
           onClick={this.addMother}
         >
           Submit
@@ -342,6 +343,7 @@ class OutlinedTextFields extends React.Component {
           onClose={this.snackbarClose}
           onClick={this.snackbarClose}
         />
+       </Grid>
       </form>
     );
   }
