@@ -181,11 +181,7 @@ class OutlinedTextFields extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const addBtnClass = {
-      display: 'flex',
-      width: '111px',
-      justifyContent: 'center',
-    };
+
 
     return (
       <Grid container className={classes.container} spacing={16}>
@@ -284,7 +280,7 @@ class OutlinedTextFields extends React.Component {
               </FormControl>
             </form>
             <Grid item xs={12} md={2}>
-              <div style={addBtnClass}>
+
                 <Button
                   variant="contained"
                   color="primary"
@@ -300,7 +296,7 @@ class OutlinedTextFields extends React.Component {
                   onClose={this.snackbarClose}
                   onClick={this.snackbarClose}
                 />
-              </div>
+
             </Grid>
           </Grid>
         </Grid>
