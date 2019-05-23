@@ -11,6 +11,7 @@ class DriverForm extends React.Component {
         <div class="switchpage">
           <Link to="/mothers">
             <SwitchPageButton />
+            
           </Link>
         </div>
         <h1 class="welcome">Welcome to Safe Mothers, Safe Babies</h1>
