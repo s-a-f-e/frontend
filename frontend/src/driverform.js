@@ -37,9 +37,7 @@ class DriverForm extends React.Component {
           </a>
           .
         </p>
-        {/* <div class="button">
-        <Button />
-        </div> */}
+
         <p />
       </div>
     );
