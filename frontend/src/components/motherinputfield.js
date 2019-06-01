@@ -22,7 +22,6 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'column',
-    width: 200,
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -208,7 +207,7 @@ class OutlinedTextFields extends React.Component {
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
-        <Typography variant="h6" align="center" component="h6">
+        <Typography variant="h6" component="h6">
           Mother Info
         </Typography>
         <div class="thename">
@@ -245,7 +244,7 @@ class OutlinedTextFields extends React.Component {
                 color="primary"
               />
             }
-            label="Coordinates / Village"
+            label="Pick Village from Menue / Enter Coordinates Manually"
           />
         </FormGroup>
         <div class="lat">
