@@ -22,22 +22,6 @@ class DriverForm extends React.Component {
         <br /> <br />
         <Inputs />
         <br />
-        <p class="privacy">
-          By clicking submit you are agreeing to the{" "}
-          <a href="#" class="click">
-            Terms and Conditions
-          </a>
-          ,{" "}
-          <a href="#" class="click">
-            Privacy Policy
-          </a>
-          , and{" "}
-          <a href="#" class="click">
-            Fees
-          </a>
-          .
-        </p>
-
         <p />
       </div>
     );

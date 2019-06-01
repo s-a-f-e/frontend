@@ -43,12 +43,10 @@ html {
 }
 
 .column-two {
-  position: relative;
-  left: 140px;
+  left: 150px;
   top: 80px;
   float: right;
-  width: 47%;
-  height: 800px; /* Should be removed. Only for demonstration */
+  width: 40%;
 }
 
 /* Clear floats after the columns */

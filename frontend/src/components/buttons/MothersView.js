@@ -16,7 +16,7 @@ function TextButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button className={classes.button}>Mothers</Button>
+      <Button className={classes.button}>Click Here To Add Mothers</Button>
     </div>
   );
 }
