@@ -66,14 +66,14 @@ html {
 
 .welcome {
   position: relative;
-  right: 140px;
+  right: 125px;
   font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
 }
 
 .welcome2 {
   position: relative;
-  right: 140px;
+  right: 125px;
   font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
   font-weight: 500;
@@ -157,6 +157,7 @@ html {
   position: relative;
   right: -30px;
   bottom: 76px;
+  margin-left: -95px;
 }
 
 .logo {

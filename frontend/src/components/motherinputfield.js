@@ -244,7 +244,7 @@ class OutlinedTextFields extends React.Component {
                 color="primary"
               />
             }
-            label="Pick Village from Menue / Enter Coordinates Manually"
+            label="Pick Village from Menu / Enter Coordinates Manually"
           />
         </FormGroup>
         <div class="lat">
