@@ -37,23 +37,17 @@ html {
 }
 
 .column-one {
-  float: left;
-  width: 50%;
-  height: 900px; /* Should be removed. Only for demonstration */
+width: 50%
 }
 
 .column-two {
-  left: 150px;
-  top: 80px;
-  float: right;
-  width: 40%;
+margin-left: 170px;
 }
 
 /* Clear floats after the columns */
-.row:after {
-  content: '';
-  display: table;
-  clear: both;
+.row {
+display: flex;
+flex-direction: row;
 }
 
 .one {
@@ -167,7 +161,5 @@ html {
 }
 
 .switchpage {
-  position: relative;
-  bottom: 20px;
-  left: 380px;
+
 }
