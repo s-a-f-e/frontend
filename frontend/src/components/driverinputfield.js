@@ -43,7 +43,19 @@ function TextMaskCustom(props) {
         inputRef(ref ? ref.inputElement : null);
       }}
       /* prettier-ignore */
-      mask={[/[1-9]/,/\d/,/\d/," ","-"," ",/\d/,/\d/,/\d/,/\d/,/\d/,/\d/]}
+      mask={[
+        '+',
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+      ]}
       placeholderChar={'\u2000'}
       showMask
     />
