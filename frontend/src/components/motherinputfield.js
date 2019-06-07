@@ -235,6 +235,7 @@ class OutlinedTextFields extends React.Component {
           />
         </div>
         <FormGroup class="switch">
+          <Typography>Pick Village from Menu</Typography>
           <FormControlLabel
             control={
               <Switch
@@ -244,8 +245,8 @@ class OutlinedTextFields extends React.Component {
                 color="primary"
               />
             }
-            label="Pick Village from Menu / Enter Coordinates Manually"
           />
+           <Typography>Enter Coordinates Manually</Typography>
         </FormGroup>
         <div class="lat">
           <TextField
