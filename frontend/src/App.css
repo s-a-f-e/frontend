@@ -40,6 +40,12 @@ html {
 width: 50%
 }
 
+@media only screen and (max-width: 730px) {
+  .column-one{
+    display: none;
+  }
+}
+
 .column-two {
 margin-left: 170px;
 }
@@ -148,6 +154,7 @@ flex-direction: row;
 } */
 
 .switch {
+  display: flex;
   position: relative;
   right: -30px;
   bottom: 76px;
@@ -158,8 +165,4 @@ flex-direction: row;
   position: relative;
   bottom: 770px;
   left: 50px;
-}
-
-.switchpage {
-
 }
