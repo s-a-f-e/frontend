@@ -3,14 +3,17 @@
 width: 50%
 }
 
+.column-two {
+margin-left: 170px;
+}
+
 @media only screen and (max-width: 730px) {
   .column-one{
     display: none;
   }
-}
-
-.column-two {
-margin-left: 170px;
+  .column-two {
+    margin-left: 145px;
+    }
 }
 
 /* Clear floats after the columns */
@@ -40,6 +43,15 @@ flex-direction: row;
   font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
   font-weight: 500;
+}
+
+@media only screen and (max-width: 730px) {
+  .welcome{
+    right: 60px;
+  }
+  .welcome2{
+    right: 60px;
+  }
 }
 
 .privacy {
