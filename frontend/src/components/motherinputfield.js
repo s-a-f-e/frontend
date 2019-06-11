@@ -32,6 +32,9 @@ const styles = theme => ({
     left: 7,
     marginTop: 20,
   },
+  mother: {
+    marginLeft:55,
+  },
   dense: {
     marginTop: 16,
   },
@@ -206,7 +209,7 @@ class OutlinedTextFields extends React.Component {
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
-        <Typography variant="h6" component="h6">
+        <Typography className={classes.mother} variant="h6" component="h6">
           Mother Info
         </Typography>
         <div class="thename">
