@@ -2,6 +2,7 @@ import React from "react";
 import Image from "./image";
 import DriverForm from "./driverform";
 import MotherForm from "./motherform";
+import Data from "./existingData"
 import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 
@@ -21,6 +22,7 @@ class App extends React.Component {
               exact
               render={props => <MotherForm {...props} />}
             />
+            <Route path="/data" exact render={props => <Data {...props} />} />
           </Switch>
         </div>
       </div>

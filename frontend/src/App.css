@@ -47,10 +47,10 @@ flex-direction: row;
 
 @media only screen and (max-width: 730px) {
   .welcome{
-    right: 60px;
+    right: 40px;
   }
   .welcome2{
-    right: 60px;
+    right: 40px;
   }
 }
 
@@ -134,6 +134,13 @@ flex-direction: row;
   right: -30px;
   bottom: 76px;
   margin-left: -95px;
+}
+
+.switchpage {
+display: flex;
+flex-direction: row;
+margin-top: 50px;
+margin-right: 135px;
 }
 
 .logo {

@@ -56,10 +56,18 @@ function TextMaskCustom(props) {
       }}
       mask={[
         '+',
+        2,
+        5,
+        6,
+        ' ',
+        '-',
+        ' ',
         /\d/,
         /\d/,
         /\d/,
-        /\d/,
+        ' ',
+        '-',
+        ' ',
         /\d/,
         /\d/,
         /\d/,
@@ -296,6 +304,30 @@ class OutlinedTextFields extends React.Component {
                 value={this.state.village}
                 onChange={this.handledChanged('village')}
                 placeholder="Village Name"
+                isClearable
+              />
+            </NoSsr>
+          </div>
+          <div class="village">
+            {/* <TextField
+              disabled={disabled}
+              id="outlined-name"
+              label=" Village Name"
+              name="village"
+              className={classes.textField}
+              value={this.state.village}
+              onChange={this.handleChange('name')}
+              margin="normal"
+              variant="outlined"
+            /> */}
+            <NoSsr>
+              <Select
+                className={classes.select}
+                classes={classes}
+                options={options}
+                value={this.state.mother}
+                onChange={this.handledChanged('mothers')}
+                placeholder="List of Mothers"
                 isClearable
               />
             </NoSsr>
