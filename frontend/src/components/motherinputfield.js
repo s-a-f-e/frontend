@@ -308,30 +308,6 @@ class OutlinedTextFields extends React.Component {
               />
             </NoSsr>
           </div>
-          <div class="village">
-            {/* <TextField
-              disabled={disabled}
-              id="outlined-name"
-              label=" Village Name"
-              name="village"
-              className={classes.textField}
-              value={this.state.village}
-              onChange={this.handleChange('name')}
-              margin="normal"
-              variant="outlined"
-            /> */}
-            <NoSsr>
-              <Select
-                className={classes.select}
-                classes={classes}
-                options={options}
-                value={this.state.mother}
-                onChange={this.handledChanged('mothers')}
-                placeholder="List of Mothers"
-                isClearable
-              />
-            </NoSsr>
-          </div>
         </div>
 
         <FormControl className={classes.formControl} class="phone4">
