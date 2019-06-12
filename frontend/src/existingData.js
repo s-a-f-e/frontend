@@ -2,6 +2,8 @@ import React from 'react';
 import Inputs from './components/motherinputfield';
 import Button from "@material-ui/core/Button";
 import {Link} from 'react-router-dom';
+import MotherTable from './components/motherTable'
+import DriverTable from './components/driverTable'
 
 class Data extends React.Component {
   render() {
@@ -20,6 +22,8 @@ class Data extends React.Component {
         </Link>
         </div>
           <h1 class="welcome">List of Mothers and Drivers</h1>
+          <MotherTable/>
+          <DriverTable/>
       </div>
     );
   }
