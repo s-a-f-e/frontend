@@ -196,6 +196,8 @@ class OutlinedTextFields extends React.Component {
   handledChanged = name => value => {
     this.setState({
       [name]: value,
+      // latitude: this.state.village.latitude,
+      // longitude: this.state.village.longitude
     });
   };
 
