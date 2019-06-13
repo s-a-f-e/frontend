@@ -23,11 +23,11 @@ function createData(name, phone, village) {
 }
 
 const rows = [
-  createData('Mary', 5555555, 'village'),
-  createData('Caren', 5555555, 'village'),
-  createData('Patty', 26255555, 'village'),
-  createData('Sharon', 15955555, 'village'),
-  createData('Meg', 35655555, 'village'),
+//   createData('Mary', 5555555, 'village'),
+//   createData('Caren', 5555555, 'village'),
+//   createData('Patty', 26255555, 'village'),
+//   createData('Sharon', 15955555, 'village'),
+//   createData('Meg', 35655555, 'village'),
 ];
 
 function desc(a, b, orderBy) {
@@ -198,10 +198,10 @@ const useStyles = makeStyles(theme => ({
 export default function MotherTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('village');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   function handleRequestSort(event, property) {
@@ -245,10 +245,6 @@ export default function MotherTable() {
 
   function handleChangeRowsPerPage(event) {
     setRowsPerPage(+event.target.value);
-  }
-
-  function handleChangeDense(event) {
-    setDense(event.target.checked);
   }
 
   const isSelected = name => selected.indexOf(name) !== -1;

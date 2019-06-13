@@ -20,8 +20,8 @@ const styles = theme => ({
     width: 200,
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   dense: {
     marginTop: 16,
@@ -30,7 +30,7 @@ const styles = theme => ({
     width: 100,
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 function TextMaskCustom(props) {
@@ -235,7 +235,7 @@ class OutlinedTextFields extends React.Component {
                   variant="outlined"
                 />
               </div>
-              <div class="lat">
+              <div className="lat">
                 <TextField
                   id="outlined-name"
                   label="Latitude"
@@ -246,7 +246,7 @@ class OutlinedTextFields extends React.Component {
                   margin="normal"
                   variant="outlined"
                 />
-                <div class="long">
+                <div className="long">
                   <TextField
                     id="outlined-name"
                     label="Longitude"

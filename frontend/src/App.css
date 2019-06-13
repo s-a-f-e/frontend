@@ -5,6 +5,7 @@ width: 50%
 
 .column-two {
 margin-left: 170px;
+margin-right: 55px;
 }
 
 @media only screen and (max-width: 730px) {
@@ -43,6 +44,11 @@ flex-direction: row;
   font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
   font-weight: 500;
+}
+
+.welcome3 {
+  font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+  sans-serif;
 }
 
 @media only screen and (max-width: 730px) {
