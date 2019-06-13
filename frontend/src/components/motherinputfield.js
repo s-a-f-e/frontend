@@ -24,8 +24,8 @@ const styles = theme => ({
     flexDirection: 'column',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   select: {
     width: 185,
@@ -42,7 +42,7 @@ const styles = theme => ({
     width: 100,
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 function TextMaskCustom(props) {
@@ -209,7 +209,6 @@ class OutlinedTextFields extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { textmask } = this.state;
     const disabled = !!this.state.checkedA;
     const enabled = !this.state.checkedA;
     const options = this.state.villageDB.map(suggestion => ({
@@ -222,7 +221,7 @@ class OutlinedTextFields extends React.Component {
         <Typography className={classes.mother} variant="h6" component="h6">
           Mother Info
         </Typography>
-        <div class="thename">
+        <div className="thename">
           <TextField
             id="outlined-name"
             label="First Name"
@@ -234,7 +233,7 @@ class OutlinedTextFields extends React.Component {
             variant="outlined"
           />
         </div>
-        <div class="thenameis">
+        <div className="thenameis">
           <TextField
             id="outlined-name"
             label=" Last Name"
@@ -246,7 +245,7 @@ class OutlinedTextFields extends React.Component {
             variant="outlined"
           />
         </div>
-        <FormGroup class="switch">
+        <FormGroup className="switch">
           <Typography>Pick Village from Menu</Typography>
           <FormControlLabel
             control={
@@ -260,7 +259,7 @@ class OutlinedTextFields extends React.Component {
           />
            <Typography>Enter Coordinates Manually</Typography>
         </FormGroup>
-        <div class="lat">
+        <div className="lat">
           <TextField
             disabled={enabled}
             id="outlined-name"
@@ -272,7 +271,7 @@ class OutlinedTextFields extends React.Component {
             margin="normal"
             variant="outlined"
           />
-          <div class="long">
+          <div className="long">
             <TextField
               disabled={enabled}
               id="outlined-name"
@@ -285,7 +284,7 @@ class OutlinedTextFields extends React.Component {
               variant="outlined"
             />
           </div>
-          <div class="village">
+          <div className="village">
             {/* <TextField
               disabled={disabled}
               id="outlined-name"
