@@ -23,11 +23,24 @@ function createData(name, phone, village) {
 }
 
 const rows = [
-//   createData('Mary', 5555555, 'village'),
-//   createData('Caren', 5555555, 'village'),
-//   createData('Patty', 26255555, 'village'),
-//   createData('Sharon', 15955555, 'village'),
-//   createData('Meg', 35655555, 'village'),
+  {
+    id: 'name',
+    numeric: false,
+    disablePadding: true,
+    label: 'Name',
+  },
+  {
+    id: 'phone',
+    numeric: false,
+    disablePadding: false,
+    label: 'Phone',
+  },
+  {
+    id: 'village',
+    numeric: false,
+    disablePadding: false,
+    label: 'Village',
+  },
 ];
 
 function desc(a, b, orderBy) {
@@ -203,6 +216,7 @@ export default function MotherTable() {
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  
 
   function handleRequestSort(event, property) {
     const isDesc = orderBy === property && order === 'desc';
