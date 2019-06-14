@@ -71,7 +71,9 @@ class Data extends React.Component {
         </Link>
         </div>
           <h1 className="welcome3">List of Mothers and Drivers</h1>
-          <MotherTable/>
+          <MotherTable
+
+          />
           <DriverTable/>
       </div>
     );
