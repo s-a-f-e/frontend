@@ -91,6 +91,8 @@ class OutlinedTextFields extends React.Component {
     lastname: '',
     latitude: '',
     longitude: '',
+    latitudeAssign: '',
+    longitudeAssign: '',
     textmask: ' ',
     openSnackbar: false,
     snackbarMessage: '',
@@ -113,7 +115,7 @@ class OutlinedTextFields extends React.Component {
       .get(`https://saferides.herokuapp.com/api/villages/`, header)
       .then(response => {
         for (let villa of response.data) {
-          villages.push({ label: villa.name });
+          villages.push({ label: villa.name, latitude: villa.latitude, longitude: villa.longitude });
         }
         this.setState({
           villageDB: villages,
@@ -127,10 +129,17 @@ class OutlinedTextFields extends React.Component {
 
   addMother = event => {
     event.preventDefault();
+    let lat, lon;
+    if (!this.state.latitude || this.state.latitude == undefined) {
+      lat = this.state.latitudeAssign
+    } else lat = this.state.latitude
+    if (!this.state.longitude || this.state.longitude == undefined) {
+      lon = (this.state.longitudeAssign)
+    } else lon = this.state.longitude
     const info = {
       name: `${this.state.firstname} ${this.state.lastname}`,
-      latitude: +this.state.latitude,
-      longitude: +this.state.longitude,
+      latitude: lat,
+      longitude: lon,
       phone: this.state.textmask,
       village: this.state.village.value || 'coordinates entered',
     };
@@ -194,10 +203,20 @@ class OutlinedTextFields extends React.Component {
   };
 
   handledChanged = name => value => {
+    let vill = this.state.villageDB;
+    let lat,lon;
+    
+    for (let i = 0; i < vill.length; i++) {
+      if (vill[i].label === value.label) {
+        lat = vill[i].latitude;
+        lon = vill[i].longitude;
+        
+      }
+    }
     this.setState({
       [name]: value,
-      // latitude: this.state.village.latitude,
-      // longitude: this.state.village.longitude
+      latitudeAssign: lat,
+      longitudeAssign: lon
     });
   };
 
