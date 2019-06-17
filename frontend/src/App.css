@@ -140,6 +140,7 @@ flex-direction: row;
   right: -30px;
   bottom: 76px;
   margin-left: -95px;
+  flex-direction: row;
 }
 
 .switchpage {

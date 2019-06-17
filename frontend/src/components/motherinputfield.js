@@ -136,7 +136,12 @@ class OutlinedTextFields extends React.Component {
     if (!this.state.longitude || this.state.longitude === undefined) {
       lon = this.state.longitudeAssign
     } else lon = this.state.longitude
-    let villageName = this.state.village.value || "coordinates entered"
+    let villageName
+    if(this.state.village){
+      villageName = this.state.village.value
+    } else {
+      villageName = "coordinates entered"
+    }
     const info = {
       name: `${this.state.firstname} ${this.state.lastname}`,
       latitude: lat,
