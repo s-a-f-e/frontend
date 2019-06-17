@@ -1,14 +1,15 @@
 import React from 'react';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { lighten, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import Loading from './Loading';
+import EmptyPage from './EmptyPage';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -16,11 +17,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
-
-function createData(name, phone, village) {
-  return { name, phone, village };
-}
+import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 const rows = [
   {
@@ -43,87 +40,36 @@ const rows = [
   },
 ];
 
-function desc(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
+class EnhancedTableHead extends React.Component {
+  render() {
+    const { onSelectAllClick, numSelected, rowCount } = this.props;
+
+    return (
+      <TableHead>
+        <TableRow>
+          {rows.map(
+            row => (
+              <TableCell key={row.id} align={'center'} padding={'none'}>
+                {row.label}
+              </TableCell>
+            ),
+            this
+          )}
+        </TableRow>
+      </TableHead>
+    );
   }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function stableSort(array, cmp) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = cmp(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map(el => el[0]);
-}
-
-function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
-}
-
-const headRows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
-  { id: 'phone', numeric: true, disablePadding: false, label: 'Phone' },
-  { id: 'village', numeric: true, disablePadding: false, label: 'Village' },
-];
-
-function EnhancedTableHead(props) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-  const createSortHandler = property => event => {
-    onRequestSort(event, property);
-  };
-
-  return (
-    <TableHead>
-      <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'Select all desserts' }}
-          />
-        </TableCell>
-        {headRows.map(row => (
-          <TableCell
-            key={row.id}
-            align={row.numeric ? 'right' : 'left'}
-            padding={row.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === row.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === row.id}
-              direction={order}
-              onClick={createSortHandler(row.id)}
-            >
-              {row.label}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
 }
 
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
 
-const useToolbarStyles = makeStyles(theme => ({
+const toolbarStyles = theme => ({
   root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
+    paddingRight: theme.spacing.unit,
   },
   highlight:
     theme.palette.type === 'light'
@@ -144,15 +90,14 @@ const useToolbarStyles = makeStyles(theme => ({
   title: {
     flex: '0 0 auto',
   },
-}));
+});
 
-const EnhancedTableToolbar = props => {
-  const classes = useToolbarStyles();
-  const { numSelected } = props;
+let EnhancedTableToolbar = props => {
+  const { numSelected, classes } = props;
 
   return (
     <Toolbar
-      className={clsx(classes.root, {
+      className={classNames(classes.root, {
         [classes.highlight]: numSelected > 0,
       })}
     >
@@ -176,11 +121,7 @@ const EnhancedTableToolbar = props => {
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
+          <></>
         )}
       </div>
     </Toolbar>
@@ -188,57 +129,55 @@ const EnhancedTableToolbar = props => {
 };
 
 EnhancedTableToolbar.propTypes = {
+  classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
 };
 
-const useStyles = makeStyles(theme => ({
+EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
+
+const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  paper: {
-    width: '100%',
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing.unit * 3,
   },
   table: {
-    minWidth: 750,
+    minWidth: 250,
   },
   tableWrapper: {
     overflowX: 'auto',
   },
-}));
+  loader: {
+    height: '196px',
+    alignItems: 'center',
+  },
+  emptyPage: {
+    height: '196px',
+    padding: theme.spacing.unit * 3,
+  },
+});
 
-export default function MotherTable() {
-  const classes = useStyles();
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('village');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [dense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  
+class MotherTable extends React.Component {
+  state = {
+    selected: [],
+    page: 0,
+    rowsPerPage: 4,
+  };
 
-  function handleRequestSort(event, property) {
-    const isDesc = orderBy === property && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
-    setOrderBy(property);
-  }
-
-  function handleSelectAllClick(event) {
+  handleSelectAllClick = event => {
     if (event.target.checked) {
-      const newSelecteds = rows.map(n => n.name);
-      setSelected(newSelecteds);
+      this.setState(state => ({ selected: this.props.data.map(n => n.id) }));
       return;
     }
-    setSelected([]);
-  }
+    this.setState({ selected: [] });
+  };
 
-  function handleClick(event, name) {
-    const selectedIndex = selected.indexOf(name);
+  handleClick = (event, id) => {
+    const { selected } = this.state;
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -246,86 +185,93 @@ export default function MotherTable() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
-    setSelected(newSelected);
-  }
+    this.setState({ selected: newSelected });
+  };
 
-  function handleChangePage(event, newPage) {
-    setPage(newPage);
-  }
+  handleChangePage = (event, page) => {
+    this.setState({ page });
+  };
 
-  function handleChangeRowsPerPage(event) {
-    setRowsPerPage(+event.target.value);
-  }
+  isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-  const isSelected = name => selected.indexOf(name) !== -1;
+  render() {
+    const { classes, data, loading } = this.props;
+    const { selected, rowsPerPage, page } = this.state;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    const emptyRows =
+      rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-  return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    return (
+      <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
-          <Table
-            className={classes.table}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
+          <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              onSelectAllClick={this.handleSelectAllClick}
+              rowCount={data.length}
             />
             <TableBody>
-              {stableSort(rows, getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-
-                  return (
-                    <TableRow
-                      hover
-                      onClick={event => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.phone}</TableCell>
-                      <TableCell align="right">{row.village}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
+              {loading
+                ? null
+                : data
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map(data => {
+                      const isSelected = this.isSelected(data.name);
+                      return (
+                        <TableRow
+                          hover
+                          onClick={event =>
+                            this.handleClick(event, data.name)
+                          }
+                          role="checkbox"
+                          aria-checked={isSelected}
+                          tabIndex={-1}
+                          key={data.mothers}
+                          selected={isSelected}
+                        >
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            align="center"
+                            padding="none"
+                          >
+                            {data.name}
+                          </TableCell>
+                          <TableCell padding="dense" align="center">
+                            {data.phone}
+                          </TableCell>
+                          <TableCell padding="dense" align="center">
+                            {data.village}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+              {emptyRows > 0 && !loading && data.length > 0 ? (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
-              )}
+              ) : null}
             </TableBody>
           </Table>
+          {loading ? (
+            <Loading className={classes.loader} size={40} />
+          ) : data.length === 0 ? (
+            <EmptyPage
+              className={classes.emptyPage}
+              variant="h4"
+              message="No Mothers"
+            />
+          ) : null}
         </div>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5]}
           component="div"
-          count={rows.length}
+          count={data.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
@@ -334,11 +280,15 @@ export default function MotherTable() {
           nextIconButtonProps={{
             'aria-label': 'Next Page',
           }}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onChangePage={this.handleChangePage}
         />
       </Paper>
-      
-    </div>
-  );
+    );
+  }
 }
+
+MotherTable.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(MotherTable);
