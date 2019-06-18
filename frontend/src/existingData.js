@@ -60,7 +60,7 @@ class Data extends React.Component {
     console.log("momma", mothers);
     return (
       
-      <div>
+      <div class='tables'>
         <div className="switchpage">
           <Link
            style={{ textDecoration: 'none'}}
