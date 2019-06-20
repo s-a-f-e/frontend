@@ -327,7 +327,7 @@ class OutlinedTextFields extends React.Component {
                 className={classes.select}
                 classes={classes}
                 options={options}
-                value={this.state.village}
+                value={this.state.village.sort()}
                 onChange={this.handledChanged('village')}
                 placeholder="Village Name"
                 isClearable
