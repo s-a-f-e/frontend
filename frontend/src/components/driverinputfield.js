@@ -99,7 +99,11 @@ class OutlinedTextFields extends React.Component {
       .then(response => {
         localStorage.setItem('token', 'token ' + response.data.token);
         //console.log(response.data.token);
+      })
+      .catch(err => {
+        console.error('axios err:', err);
       });
+      
   }
 
   handleChange = name => event => {
