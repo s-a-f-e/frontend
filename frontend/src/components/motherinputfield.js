@@ -119,7 +119,6 @@ class OutlinedTextFields extends React.Component {
           villages.push({ label: villa.name, latitude: villa.latitude, longitude: villa.longitude });
         }
         const sortedVillages = villages.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
-        console.log("HERE", sortedVillages);
         this.setState({
           villageDB: sortedVillages,
         });
@@ -151,14 +150,12 @@ class OutlinedTextFields extends React.Component {
       phone: this.state.textmask,
       village: villageName
     };
-    console.table('info', info);
 
     const header = {
       headers: {
         authorization: `${localStorage.getItem('token')}`,
       },
     };
-    console.log(`Token ${localStorage.getItem('token')}`);
 
     if (this.state.textmask.length > 1) {
       axios

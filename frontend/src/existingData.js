@@ -31,7 +31,6 @@ class Data extends React.Component {
         this.setState({
            mothers
         });
-        console.log('mothers: ', mothers);
       })
       .catch(err => {
         console.error('axios err:', err);
@@ -46,7 +45,6 @@ class Data extends React.Component {
         this.setState({
           drivers,
         });
-        console.log('drivers: ', drivers);
       })
       .catch(err => {
         console.error('axios err:', err);
@@ -57,7 +55,6 @@ class Data extends React.Component {
     const {
       mothers,drivers
     } = this.state;
-    console.log("momma", mothers);
     return (
       
       <div class='tables'>
@@ -80,7 +77,6 @@ class Data extends React.Component {
           <DriverTable
             info={drivers}
           />
-            
       </div>
     );
   }
