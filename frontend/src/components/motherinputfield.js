@@ -118,10 +118,11 @@ class OutlinedTextFields extends React.Component {
         for (let villa of response.data) {
           villages.push({ label: villa.name, latitude: villa.latitude, longitude: villa.longitude });
         }
+        const sortedVillages = villages.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+        console.log("HERE", sortedVillages);
         this.setState({
-          villageDB: villages,
+          villageDB: sortedVillages,
         });
-        console.log('villages: ', villages);
       })
       .catch(err => {
         console.error('axios err:', err);
@@ -317,7 +318,7 @@ class OutlinedTextFields extends React.Component {
                 className={classes.select}
                 classes={classes}
                 options={options}
-                value={this.state.village.sort()}
+                value={this.state.village}
                 onChange={this.handledChanged('village')}
                 placeholder="Village Name"
                 isClearable
