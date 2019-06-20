@@ -8,10 +8,8 @@ import axios from 'axios';
 class Data extends React.Component {
 
   state = {
-    mother: null,
-    motherDB: [],
-    driver: null,
-    driverDB: [],
+    mothers: [],
+    drivers: [],
   };
 
   componentDidMount() {
@@ -28,10 +26,10 @@ class Data extends React.Component {
       .get(`https://saferides.herokuapp.com/api/mothers/`, header)
       .then(response => {
         for (let mom of response.data) {
-          mothers.push({ label: mom.name });
+          mothers.push({ name: mom.name, phone: mom.phone, village: mom.village });
         }
         this.setState({
-          mothersDB: mothers,
+           mothers
         });
         console.log('mothers: ', mothers);
       })
@@ -43,10 +41,10 @@ class Data extends React.Component {
       .get(`https://saferides.herokuapp.com/api/drivers/`, header)
       .then(response => {
         for (let driver of response.data) {
-          drivers.push({ label: driver.name });
+          drivers.push({ name: driver.name, latitude: driver.latitude, longitude: driver.longitude, phone: driver.phone, });
         }
         this.setState({
-          driversDB: drivers,
+          drivers,
         });
         console.log('drivers: ', drivers);
       })
@@ -56,8 +54,13 @@ class Data extends React.Component {
   }
 
   render() {
+    const {
+      mothers,drivers
+    } = this.state;
+    console.log("momma", mothers);
     return (
-      <div>
+      
+      <div class='tables'>
         <div className="switchpage">
           <Link
            style={{ textDecoration: 'none'}}
@@ -70,11 +73,14 @@ class Data extends React.Component {
           <Button>Click Here to Add Drivers</Button>
         </Link>
         </div>
-          <h1 className="welcome3">List of Mothers and Drivers</h1>
+           <h1 className="welcome3">List of Mothers and Drivers</h1>
           <MotherTable
-
+            data={mothers}
+          /> 
+          <DriverTable
+            info={drivers}
           />
-          <DriverTable/>
+            
       </div>
     );
   }

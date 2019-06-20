@@ -22,6 +22,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'column',
+    width: 200,
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -270,8 +271,8 @@ class OutlinedTextFields extends React.Component {
             variant="outlined"
           />
         </div>
-        <FormGroup className="switch">
-          <Typography>Pick Village from Menu</Typography>
+        <FormGroup class="switch">
+          <Typography class='title'>Pick Village from Menu</Typography>
           <FormControlLabel
             control={
               <Switch
@@ -282,7 +283,7 @@ class OutlinedTextFields extends React.Component {
               />
             }
           />
-           <Typography>Enter Coordinates Manually</Typography>
+           <Typography class='title'>Enter Coordinates Manually</Typography>
         </FormGroup>
         <div className="lat">
           <TextField
@@ -310,17 +311,6 @@ class OutlinedTextFields extends React.Component {
             />
           </div>
           <div className="village">
-            {/* <TextField
-              disabled={disabled}
-              id="outlined-name"
-              label=" Village Name"
-              name="village"
-              className={classes.textField}
-              value={this.state.village}
-              onChange={this.handleChange('name')}
-              margin="normal"
-              variant="outlined"
-            /> */}
             <NoSsr>
               <Select
                 isDisabled={disabled}
@@ -348,21 +338,6 @@ class OutlinedTextFields extends React.Component {
             inputComponent={TextMaskCustom}
           />
         </FormControl>
-        {/* <div class="ssr">
-          <NoSsr>
-            <Select
-              isDisabled={disabled}
-              className={classes.select}
-              classes={classes}
-              options={options}
-              // components={components}
-              value={this.state.single}
-              onChange={this.handledChanged('single')}
-              placeholder="Village Name"
-              isClearable
-            />
-          </NoSsr>
-        </div> */}
         <Grid item xs={12} md={2}>
         <Button
           variant="contained"

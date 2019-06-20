@@ -128,18 +128,13 @@ flex-direction: row;
   bottom: 208px;
 }
 
-/* .ssr {
-  position: relative;
-  right: -120px;
-  bottom: 200px;
-} */
-
 .switch {
   display: flex;
   position: relative;
   right: -30px;
+  left: 80px;
   bottom: 76px;
-  margin-left: -95px;
+  margin-left: -110px;
   flex-direction: row;
 }
 
@@ -154,4 +149,13 @@ margin-right: 135px;
   position: relative;
   bottom: 770px;
   left: 50px;
+}
+
+.title {
+  font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+  sans-serif;
+}
+
+.tables{
+  margin-bottom: 50px;
 }
