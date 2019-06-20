@@ -98,7 +98,6 @@ class OutlinedTextFields extends React.Component {
       .post('https://saferides.herokuapp.com/api-token-auth/', config)
       .then(response => {
         localStorage.setItem('token', 'token ' + response.data.token);
-        //console.log(response.data.token);
       })
       .catch(err => {
         console.error('axios err:', err);
@@ -320,7 +319,6 @@ class OutlinedTextFields extends React.Component {
                   onClose={this.snackbarClose}
                   onClick={this.snackbarClose}
                 />
-
             </Grid>
           </Grid>
         </Grid>

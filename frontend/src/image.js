@@ -1,6 +1,5 @@
 import React from 'react';
 import Hospital from './images/hospital.png';
-
 import { Grid } from '@material-ui/core';
 
 const Image = () => {
