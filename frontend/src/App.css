@@ -159,3 +159,46 @@ margin-right: 135px;
 .tables{
   margin-bottom: 50px;
 }
+
+.landing{
+  background-image: url("./images//momandbabyScaled.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 768px;
+    
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+    
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.land-welcome{
+  margin-top: 20%;
+  margin-left: 20%;
+}
+
+.land-header{
+  margin-left: 80px;
+  width: 60%;
+  color: #fff;
+}
+
+.land-buttons{
+  padding: 5%;
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+}
+@media only screen and (max-width: 730px) {
+  .land-welcome{
+    margin-left: 0%;
+  }
+  .land-buttons{
+    width: 50%
+  }
+}
