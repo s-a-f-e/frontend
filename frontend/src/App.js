@@ -6,20 +6,21 @@ import Data from "./existingData"
 import "./App.css";
 import { Route, Switch} from "react-router-dom";
 import Login from "./components/login";
+import LandingPage from './landingPage'
 
 class App extends React.Component {
   render() {
     return (
-      <div className="login">
-        <Route exact path="/" render={props => <Login {...props}/>}
-      />
+      
+      <div>
+        <Route exact path="/" render={props => <LandingPage {...props}/>}
+        />
         <div className="row">
           <div className="column-one one">
             <Image />
           </div>
-
           <div className="column-two two">
-            <Switch>
+
               <Route exact path="/drivers" render={props => <DriverForm {...props} />} />
               <Route
                 exact
@@ -27,7 +28,7 @@ class App extends React.Component {
                 render={props => <MotherForm {...props} />}
               />
               <Route path="/data" exact render={props => <Data {...props} />} />
-            </Switch>
+
           </div>
         </div>
       </div>

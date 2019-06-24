@@ -66,7 +66,7 @@ class Data extends React.Component {
           </Link>
           <Link 
           style={{ textDecoration: 'none'}}
-          to='/'>
+          to='/drivers'>
           <Button>Click Here to Add Drivers</Button>
         </Link>
         </div>
