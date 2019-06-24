@@ -10,7 +10,7 @@ class MotherForm extends React.Component {
         <div className='switchpage'> 
         <Link 
         style={{ textDecoration: 'none'}}
-        to='/'>
+        to='/drivers'>
           <Button>Click Here To Add Drivers</Button>
         </Link>
         <Link 
