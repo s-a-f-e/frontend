@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
 import Tooltip from '@material-ui/core/Tooltip';
+import LandingPage from "../landingPage";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 
@@ -42,8 +44,9 @@ const styles = theme => ({
   },
 });
 
-class LoginModal extends Component {
+class LoginModal extends React.Component {
   state = {
+    loggedIn: false,
     username:'',
     password:'',
   };
@@ -57,18 +60,21 @@ class LoginModal extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const endpoint = "/drivers"
-
+    const endpoint = "https://saferides.herokuapp.com/api-token-auth/"
+    const credentials = {"username": this.state.username, "password": this.state.password};
     axios
-      .post(endpoint, this.state)
+      .post(endpoint, credentials)
       .then(res => {
-        console.log(res.data);
-        localStorage.setItem();
+        console.log("DATA", res.data);
+        localStorage.setItem('token', 'token ' + res.data.token);
+        this.props.history.push('/drivers');
       })
       .catch(err => {
         console.log("ERROR", err);
+        alert("Invalid Username/Password");
       })
   }
+      
 
 
   render() {
@@ -131,6 +137,7 @@ class LoginModal extends Component {
               }}
             >
               <Grid item xs={12}>
+              
                 <Button
                   color="primary"
                   onClick={this.handleSubmit}
@@ -138,6 +145,7 @@ class LoginModal extends Component {
                 >
                   Login
                 </Button>
+                
               </Grid>
             </div>
           </Grid>
@@ -147,4 +155,4 @@ class LoginModal extends Component {
   }
 }
 
-export default withStyles(styles)(LoginModal);
+export default withRouter(withStyles(styles)(LoginModal));

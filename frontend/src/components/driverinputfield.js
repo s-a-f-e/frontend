@@ -88,22 +88,7 @@ class OutlinedTextFields extends React.Component {
     snackbarVariant: '',
   };
 
-  componentDidMount() {
-    const config = {
-      username: process.env.REACT_APP_username,
-      password: process.env.REACT_APP_password,
-    };
 
-    axios
-      .post('https://saferides.herokuapp.com/api-token-auth/', config)
-      .then(response => {
-        localStorage.setItem('token', 'token ' + response.data.token);
-      })
-      .catch(err => {
-        console.error('axios err:', err);
-      });
-      
-  }
 
   handleChange = name => event => {
     this.setState({ [event.target.name]: event.target.value });
