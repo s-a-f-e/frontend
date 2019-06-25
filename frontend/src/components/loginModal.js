@@ -9,13 +9,14 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
 import Tooltip from '@material-ui/core/Tooltip';
+import axios from "axios";
 
 
 const styles = theme => ({
   paper: {
     margin: 'auto',
     marginTop: 50,
-    height: '75vh',
+    height: '42vh',
     width: '90%',
     padding: theme.spacing.unit * 3,
     [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
@@ -52,6 +53,22 @@ class LoginModal extends Component {
       [name]: event.target.value,
     });
   };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const endpoint = "/drivers"
+
+    axios
+      .post(endpoint, this.state)
+      .then(res => {
+        console.log(res.data);
+        localStorage.setItem();
+      })
+      .catch(err => {
+        console.log("ERROR", err);
+      })
+  }
 
 
   render() {
@@ -102,6 +119,7 @@ class LoginModal extends Component {
                 InputProps={{ style: { paddingLeft: '1rem' } }}
                 InputLabelProps={{ style: { paddingLeft: '1rem' } }}
                 onChange={this.handleChange('password')}
+                type="password"
               />
             </Grid>
             <div
@@ -115,7 +133,7 @@ class LoginModal extends Component {
               <Grid item xs={12}>
                 <Button
                   color="primary"
-                  //onClick={this.login}
+                  onClick={this.handleSubmit}
                   variant="text"
                 >
                   Login
