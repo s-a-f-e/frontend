@@ -14,9 +14,9 @@ class App extends React.Component {
     return (
       
       <div>
-        <Route exact path="/" render={props => <LandingPage {...props}/>}
+        <Route exact path="/" render={props => <LandingPage />}
         />
-        {/* <Route path="/learnmore" exact render={props => <LearnMore {...props} />} /> */}
+        <Route path="/learnmore" exact render={props => <LearnMore {...props} />} />
         <div className="row">
           <div className="column-one one">
             <Image />
