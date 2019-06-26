@@ -182,24 +182,37 @@ margin-right: 135px;
   position: fixed;
   top: 0;
   left: 0;
+  background-position: bottom;
 }
 
 .land-welcome{
-  margin-top: 20%;
-  margin-left: 20%;
+  margin-top: 28%;
+  margin-left: 3%;
 }
 
 .land-header{
-  margin-left: 80px;
-  width: 60%;
+  width: 40%;
   color: #fff;
 }
 
 .land-buttons{
-  padding: 5%;
   display: flex;
-  justify-content: space-evenly;
-  width: 60%;
+  justify-content: space-between;
+  width: 16%;
+  margin-top: 15px;
+}
+
+/* .gradient{
+background: linear-gradient()
+} */
+
+.loginbutton{
+    color: #fff
+  }
+
+.land-title{
+font-size: 85px;
+font-weight: lighter;
 }
 @media only screen and (max-width: 730px) {
   .land-welcome{
