@@ -1,6 +1,7 @@
 
 .column-one {
-width: 50%
+width: 50%;
+
 }
 
 .column-two {
@@ -30,6 +31,14 @@ flex-direction: row;
 .two {
   background-color: #fff;
 }
+
+.mother-content {
+margin-left: 183px;
+}
+
+.driver-content {
+  margin-left: 183px;
+  }
 
 .welcome {
   position: relative;
@@ -158,6 +167,7 @@ margin-right: 135px;
 
 .tables{
   margin-bottom: 50px;
+  margin-left: 80px
 }
 
 .landing{
@@ -214,11 +224,33 @@ background: linear-gradient()
 font-size: 85px;
 font-weight: lighter;
 }
-@media only screen and (max-width: 730px) {
-  .land-welcome{
-    margin-left: 0%;
-  }
-  .land-buttons{
-    width: 50%
-  }
+
+.learn-page{
+  min-height: 209VH;
+}
+
+.learn{
+  background-image: url('./images/bike.jpg');
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 79VH;
+  min-width: 100%;
+  background-position: center;
+  top: -152px;
+  left: 0;
+  
+}
+
+.learn-content{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  /* align-content: center; */
+  margin-left: 20%;
+  margin-top: 75px;
+}
+.learn-title{
+  margin-bottom: 30px;
+  margin-left: 180px;
 }

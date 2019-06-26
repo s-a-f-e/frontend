@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import MotherTable from './components/motherTable'
 import DriverTable from './components/driverTable'
 import axios from 'axios';
+import Image from './image'
 
 class Data extends React.Component {
 
@@ -56,7 +57,11 @@ class Data extends React.Component {
       mothers,drivers
     } = this.state;
     return (
-      
+      <>
+      <div class = 'row'>
+      <div className="column-one one">
+      <Image />
+    </div>
       <div class='tables'>
         <div className="switchpage">
           <Link
@@ -78,6 +83,8 @@ class Data extends React.Component {
             info={drivers}
           />
       </div>
+      </div>
+      </>
     );
   }
 }

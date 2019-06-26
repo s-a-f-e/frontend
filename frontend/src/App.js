@@ -18,10 +18,8 @@ class App extends React.Component {
         />
         <Route path="/learnmore" exact render={props => <LearnMore {...props} />} />
         <div className="row">
-          <div className="column-one one">
-            <Image />
-          </div>
-          <div className="column-two two">
+
+          
 
               <Route exact path="/drivers" render={props => <DriverForm {...props} />} />
               <Route
@@ -31,7 +29,7 @@ class App extends React.Component {
               />
               <Route path="/data" exact render={props => <Data {...props} />} />
 
-          </div>
+          
         </div>
       </div>
     );
