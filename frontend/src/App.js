@@ -7,6 +7,7 @@ import "./App.css";
 import { Route, Switch} from "react-router-dom";
 import Login from "./components/login";
 import LandingPage from './landingPage'
+import LearnMore from "./components/LearnMore";
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
       <div>
         <Route exact path="/" render={props => <LandingPage {...props}/>}
         />
+        {/* <Route path="/learnmore" exact render={props => <LearnMore {...props} />} /> */}
         <div className="row">
           <div className="column-one one">
             <Image />
