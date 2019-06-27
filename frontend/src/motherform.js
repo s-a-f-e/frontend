@@ -2,11 +2,17 @@ import React from 'react';
 import Inputs from './components/motherinputfield';
 import {Link} from 'react-router-dom';
 import { Button } from '@material-ui/core';
+import Image from './image'
 
 class MotherForm extends React.Component {
   render() {
     return (
-      <div>
+      <>
+      <div class = 'row'>
+      <div className="column-one one">
+      <Image />
+    </div>
+      <div class = 'mother-content'>
         <div className='switchpage'> 
         <Link 
         style={{ textDecoration: 'none'}}
@@ -26,7 +32,8 @@ class MotherForm extends React.Component {
               <br /> <br />
         <Inputs />
         <br />
-        </div>
+        </div></div>
+        </>
     );
   }
 }

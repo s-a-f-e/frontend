@@ -2,11 +2,17 @@ import React from "react";
 import Inputs from "./components/driverinputfield";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Image from './image'
 
 class DriverForm extends React.Component {
   render() {
     return (
-      <div>
+      <> 
+      <div class = 'row'>
+      <div className="column-one one">
+      <Image />
+    </div>
+      <div class = 'driver-content'>
         <div class="switchpage">
           <Link 
           style={{ textDecoration: 'none'}}
@@ -30,6 +36,8 @@ class DriverForm extends React.Component {
         <br />
         <p />
       </div>
+      </div>
+      </>
     );
   }
 }
