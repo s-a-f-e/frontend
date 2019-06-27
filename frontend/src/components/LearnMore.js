@@ -11,7 +11,6 @@ export default class LearnMore extends Component {
             <div class = 'learn-page'>
                 <div class = 'learn'>
                 </div>
-                    <div className="safe-logo-div">
 
                     <div class = 'learn-content'>
                     
@@ -44,7 +43,7 @@ export default class LearnMore extends Component {
                         working and what's not and contributing to scientific literature to push our field forward.
                         </Typography>
                     </div>
-                    </div>
+                    
                     <div class = 'learn-button'>
                     <Link
                     style={{ textDecoration: 'none'}}
