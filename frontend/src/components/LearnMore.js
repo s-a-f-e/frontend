@@ -18,12 +18,12 @@ export default class LearnMore extends Component {
                 </div>
                
                 
-                <Typography variant="h5">When a woman or child needs medical care, three things must happen: (1) She and her family must 
-                    recognize the need to get help and make the decision to seek care. (2) They must be able to physically reach
-                    a health facility; and (3) The health center must provide appropriate and high-quality care. In Uganda,
-                    lack of knowledge, cultural beliefs, unhealthy traditional practices, poor road infrastructure, extreme
-                    poverty, supply shortages, and lack of continuing medical education combine to make pregnancy, labor,
-                    delivery, and early childhood a dangerous time. 
+                <Typography variant="h5">
+                Safe Mothers, Safe Babies (SAFE) believes that no woman should die while bringing life into the world,
+                and that no child should die when his/her life is just beginning. We also believe in the capacity and
+                ingenuity of the rural poor. Together, we partner to improve the "Three Delays" that collectively lead
+                to maternal and child death. We use our innovative, community-based model to ensure that mothers and
+                children in the first 1,000 days of life lead healthy, empowered lives.​
                 </Typography>
             </div>
             <div class = 'learn-content'>
