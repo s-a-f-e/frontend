@@ -212,10 +212,6 @@ margin-right: 135px;
   margin-top: 15px;
 }
 
-/* .gradient{
-background: linear-gradient()
-} */
-
 .loginbutton{
     color: #fff
   }
@@ -250,7 +246,12 @@ font-weight: lighter;
   margin-left: 20%;
   margin-top: 75px;
 }
+
 .learn-title{
   margin-bottom: 30px;
-  margin-left: 180px;
+
+}
+
+.learn-button {
+  margin-left: 42%
 }
