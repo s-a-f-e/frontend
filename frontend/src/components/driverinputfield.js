@@ -192,6 +192,7 @@ class OutlinedTextFields extends React.Component {
 
 
     return (
+      <div class = 'driver-content'>
       <Grid container className={classes.container} spacing={16}>
         <Grid item xs={12}>
           <Grid container justify="space-between" spacing={0}>
@@ -308,6 +309,7 @@ class OutlinedTextFields extends React.Component {
           </Grid>
         </Grid>
       </Grid>
+      </div>
     );
   }
 }

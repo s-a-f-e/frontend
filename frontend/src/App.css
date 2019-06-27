@@ -41,15 +41,14 @@ margin-left: 183px;
   }
 
 .welcome {
-  position: relative;
-  right: 125px;
+
+  margin-left: 60px;
   font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
 }
 
 .welcome2 {
-  position: relative;
-  right: 125px;
+  margin-left: 48px;
   font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
   font-weight: 500;
@@ -151,7 +150,8 @@ margin-left: 183px;
 display: flex;
 flex-direction: row;
 margin-top: 50px;
-margin-right: 135px;
+margin-left: 80px;
+width: 65%;
 }
 
 .logo {
@@ -253,5 +253,6 @@ font-weight: lighter;
 }
 
 .learn-button {
-  margin-left: 42%
+  margin-left: 42%;
+  margin-top: 30px;
 }
