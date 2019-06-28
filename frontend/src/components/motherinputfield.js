@@ -45,6 +45,11 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  birth: {
+    bottom: 27,
+    position: 'relative',
+    marginLeft: 58
+  },
 });
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
@@ -87,6 +92,7 @@ TextMaskCustom.propTypes = {
 };
 
 class OutlinedTextFields extends React.Component {
+  
   state = {
     firstname: '',
     lastname: '',
@@ -101,6 +107,9 @@ class OutlinedTextFields extends React.Component {
     village: null,
     checkedA: true,
     villageDB: [],
+    month:'',
+    year:'',
+    currentYear:''
   };
 
   componentDidMount() {
@@ -126,6 +135,11 @@ class OutlinedTextFields extends React.Component {
       .catch(err => {
         console.error('axios err:', err);
       });
+
+     const recentYear = this.getYear()
+     this.setState({
+       year:recentYear
+     })
   }
 
   addMother = event => {
@@ -148,7 +162,9 @@ class OutlinedTextFields extends React.Component {
       latitude: lat,
       longitude: lon,
       phone: this.state.textmask,
-      village: villageName
+      village: villageName,
+      // month:'',
+      // year:''
     };
 
     const header = {
@@ -198,6 +214,7 @@ class OutlinedTextFields extends React.Component {
   };
 
   handleChange = name => event => {
+    console.log(name,"log")
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -225,11 +242,34 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
+  monthChanged = name => value => {
+    console.log("name:", name, " value:", value)
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  yearChanged = name => value => {
+    console.log("name",name," value:", value)
+    this.setState({
+      [name]: value.value,
+    });
+  };
+
   snackbarClose = () => {
     this.setState({
       openSnackbar: false,
     });
   };
+
+getYear() {
+    const thisYear= new Date().getFullYear();
+
+    this.setState({
+      currentYear:thisYear
+    })
+    return thisYear
+}
 
   render() {
     const { classes } = this.props;
@@ -239,7 +279,26 @@ class OutlinedTextFields extends React.Component {
       value: suggestion.label,
       label: suggestion.label,
     }));
+    const monthOptions = 
+    [{ value: "January",  label: "January", },
+     { value: "February", label: "February",},
+     { value: "March",   label: "March", },
+     { value: "April",   label: "April", },
+     { value: "May",   label: "May", },
+     { value: "June",   label: "June", },
+     { value: "July",   label: "July", },
+     { value: "August",   label: "August", },
+     { value: "September",   label: "September", },
+     { value: "October",   label: "October", },
+     { value: "November",   label: "November", },
+     { value: "December",   label: "December", },
+     ,];
 
+     const yearOptions = 
+     [{ value: this.state.currentYear,  label: this.state.currentYear, },
+      { value: this.state.currentYear + 1, label: this.state.currentYear + 1,}
+      ];
+      
     return (
       <div class = 'mother-content'>
       <form className={classes.container} noValidate autoComplete="off">
@@ -323,8 +382,39 @@ class OutlinedTextFields extends React.Component {
               />
             </NoSsr>
           </div>
+      
         </div>
-
+        </form>
+        <Typography className={classes.birth} variant="h6" >
+           Due Date
+          </Typography>
+          <div className="month">
+            <NoSsr>
+              <Select
+                className={classes.select}
+                classes={classes}
+                options={monthOptions}
+                value={this.state.month}
+                onChange={this.monthChanged('month')}
+                placeholder="Birth Month"
+                isClearable
+              />
+            </NoSsr>
+          </div>
+          <div className="year">
+            <NoSsr>
+              <Select
+              
+                className={classes.select}
+                classes={classes}
+                options={yearOptions}
+                value={this.state.year}
+                onChange={this.yearChanged('year')}
+                placeholder= {this.state.year}
+                isClearable
+              />
+            </NoSsr>
+          </div>
         <FormControl className={classes.formControl} class="phone4">
           <InputLabel htmlFor="formatted-text-mask-input">
             primary phone number
@@ -354,7 +444,7 @@ class OutlinedTextFields extends React.Component {
           onClick={this.snackbarClose}
         />
        </Grid>
-      </form>
+
       </div>
     );
   }

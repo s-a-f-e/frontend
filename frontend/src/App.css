@@ -110,7 +110,17 @@ margin-left: 183px;
 .village {
   position: relative;
   right: 0px;
-  bottom: 80px;
+  bottom: 49px;
+}
+.month {
+  position: relative;
+  right: 99px;
+  bottom: 28px;
+}
+.year {
+  position: relative;
+  right: -120px;
+  bottom: 85px;
 }
 
 .phone1 {
@@ -133,7 +143,8 @@ margin-left: 183px;
 .phone4 {
   position: relative;
   right: -130px;
-  bottom: 208px;
+  bottom: 324px;
+
 }
 
 .switch {
