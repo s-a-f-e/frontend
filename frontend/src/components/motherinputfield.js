@@ -101,6 +101,8 @@ class OutlinedTextFields extends React.Component {
     village: null,
     checkedA: true,
     villageDB: [],
+    month:'',
+    year:''
   };
 
   componentDidMount() {
@@ -148,7 +150,9 @@ class OutlinedTextFields extends React.Component {
       latitude: lat,
       longitude: lon,
       phone: this.state.textmask,
-      village: villageName
+      village: villageName,
+      // month:'',
+      // year:''
     };
 
     const header = {
@@ -198,6 +202,7 @@ class OutlinedTextFields extends React.Component {
   };
 
   handleChange = name => event => {
+    console.log(name,"log")
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -225,6 +230,13 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
+  monthChanged = name => value => {
+    console.log("name:", name, " value:", value)
+    this.setState({
+      [name]: value,
+    });
+  };
+
   snackbarClose = () => {
     this.setState({
       openSnackbar: false,
@@ -239,6 +251,33 @@ class OutlinedTextFields extends React.Component {
       value: suggestion.label,
       label: suggestion.label,
     }));
+    const monthOptions = 
+    [{ value: "January",  label: "January", },
+     { value: "February", label: "February",},
+     { value: "March",   label: "March", },
+     { value: "April",   label: "April", },
+     { value: "May",   label: "May", },
+     { value: "June",   label: "June", },
+     { value: "July",   label: "July", },
+     { value: "August",   label: "August", },
+     { value: "September",   label: "September", },
+     { value: "October",   label: "October", },
+     { value: "November",   label: "November", },
+     { value: "December",   label: "December", },
+     ,];
+
+     const yearOptions = 
+     [{ value: "2019",  label: "2019", },
+      { value: "2020", label: "2020",},
+      { value: "2021", label: "2021",},
+      { value: "2022", label: "2022",},
+      { value: "2023", label: "2023",},
+      { value: "2024", label: "2024",},
+      { value: "2025", label: "2025",},
+      { value: "2026", label: "2026",},
+      { value: "2027", label: "2027",},
+      { value: "2028", label: "2028",},
+      ,];
 
     return (
       <div class = 'mother-content'>
@@ -319,6 +358,32 @@ class OutlinedTextFields extends React.Component {
                 value={this.state.village}
                 onChange={this.handledChanged('village')}
                 placeholder="Village Name"
+                isClearable
+              />
+            </NoSsr>
+          </div>
+          <div className="month">
+            <NoSsr>
+              <Select
+                className={classes.select}
+                classes={classes}
+                options={monthOptions}
+                value={this.state.month}
+                onChange={this.monthChanged('month')}
+                placeholder="Birth Month"
+                isClearable
+              />
+            </NoSsr>
+          </div>
+          <div className="year">
+            <NoSsr>
+              <Select
+                className={classes.select}
+                classes={classes}
+                options={yearOptions}
+                value={this.state.year}
+                onChange={this.monthChanged('year')}
+                placeholder="Birth Year"
                 isClearable
               />
             </NoSsr>
