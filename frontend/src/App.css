@@ -177,7 +177,7 @@ width: 65%;
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('./images//MomAndBabyScreenSize.jpg') no-repeat;
   background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('./images//MomAndBabyScreenSize.jpg') no-repeat;
   background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('./images//MomAndBabyScreenSize.jpg') no-repeat;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.65) 95%), url('./images//MomAndBabyScreenSize.jpg') no-repeat;
+  background: linear-gradient(to bottom,  rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.65) 95%), url('./images//MomAndBabyScreenSize.jpg') no-repeat;
   height: 200px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -192,7 +192,7 @@ width: 65%;
   position: fixed;
   top: 0;
   left: 0;
-  background-position: center;
+  background-position: bottom;
 }
 
 .land-welcome{
@@ -256,3 +256,28 @@ font-weight: lighter;
   margin-left: 42%;
   margin-top: 30px;
 }
+
+/* .safe-logo-div {
+  background-size: contain;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  position: relative;
+} */
+
+/* .safe-logo-div::before {
+  background-image: url("./images/SafeMotherLogo.jpg");
+  background-size: contain;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  margin-left: 25%;
+  z-index: -2;
+  opacity: 0.2;
+  } */
+
+
+
