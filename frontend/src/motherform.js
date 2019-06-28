@@ -12,7 +12,7 @@ class MotherForm extends React.Component {
       <div className="column-one one">
       <Image />
     </div>
-      <div class = 'mother-content'>
+      <div>
         <div className='switchpage'> 
         <Link 
         style={{ textDecoration: 'none'}}

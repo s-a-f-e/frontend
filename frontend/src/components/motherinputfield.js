@@ -241,6 +241,7 @@ class OutlinedTextFields extends React.Component {
     }));
 
     return (
+      <div class = 'mother-content'>
       <form className={classes.container} noValidate autoComplete="off">
         <Typography className={classes.mother} variant="h6" component="h6">
           Mother Info
@@ -354,6 +355,7 @@ class OutlinedTextFields extends React.Component {
         />
        </Grid>
       </form>
+      </div>
     );
   }
 }

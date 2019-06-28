@@ -12,7 +12,7 @@ class DriverForm extends React.Component {
       <div className="column-one one">
       <Image />
     </div>
-      <div class = 'driver-content'>
+      <div>
         <div class="switchpage">
           <Link 
           style={{ textDecoration: 'none'}}
