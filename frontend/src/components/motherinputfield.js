@@ -45,6 +45,11 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  birth: {
+    bottom: 27,
+    position: 'relative',
+    marginLeft: 58
+  },
 });
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
@@ -87,6 +92,7 @@ TextMaskCustom.propTypes = {
 };
 
 class OutlinedTextFields extends React.Component {
+  
   state = {
     firstname: '',
     lastname: '',
@@ -102,7 +108,8 @@ class OutlinedTextFields extends React.Component {
     checkedA: true,
     villageDB: [],
     month:'',
-    year:''
+    year:'',
+    currentYear:''
   };
 
   componentDidMount() {
@@ -128,6 +135,11 @@ class OutlinedTextFields extends React.Component {
       .catch(err => {
         console.error('axios err:', err);
       });
+
+     const recentYear = this.getYear()
+     this.setState({
+       year:recentYear
+     })
   }
 
   addMother = event => {
@@ -237,11 +249,27 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
+  yearChanged = name => value => {
+    console.log("name",name," value:", value)
+    this.setState({
+      [name]: value.value,
+    });
+  };
+
   snackbarClose = () => {
     this.setState({
       openSnackbar: false,
     });
   };
+
+getYear() {
+    const thisYear= new Date().getFullYear();
+
+    this.setState({
+      currentYear:thisYear
+    })
+    return thisYear
+}
 
   render() {
     const { classes } = this.props;
@@ -267,18 +295,10 @@ class OutlinedTextFields extends React.Component {
      ,];
 
      const yearOptions = 
-     [{ value: "2019",  label: "2019", },
-      { value: "2020", label: "2020",},
-      { value: "2021", label: "2021",},
-      { value: "2022", label: "2022",},
-      { value: "2023", label: "2023",},
-      { value: "2024", label: "2024",},
-      { value: "2025", label: "2025",},
-      { value: "2026", label: "2026",},
-      { value: "2027", label: "2027",},
-      { value: "2028", label: "2028",},
-      ,];
-
+     [{ value: this.state.currentYear,  label: this.state.currentYear, },
+      { value: this.state.currentYear + 1, label: this.state.currentYear + 1,}
+      ];
+      
     return (
       <div class = 'mother-content'>
       <form className={classes.container} noValidate autoComplete="off">
@@ -362,6 +382,12 @@ class OutlinedTextFields extends React.Component {
               />
             </NoSsr>
           </div>
+      
+        </div>
+        </form>
+        <Typography className={classes.birth} variant="h6" >
+           Due Date
+          </Typography>
           <div className="month">
             <NoSsr>
               <Select
@@ -378,18 +404,17 @@ class OutlinedTextFields extends React.Component {
           <div className="year">
             <NoSsr>
               <Select
+              
                 className={classes.select}
                 classes={classes}
                 options={yearOptions}
                 value={this.state.year}
-                onChange={this.monthChanged('year')}
-                placeholder="Birth Year"
+                onChange={this.yearChanged('year')}
+                placeholder= {this.state.year}
                 isClearable
               />
             </NoSsr>
           </div>
-        </div>
-
         <FormControl className={classes.formControl} class="phone4">
           <InputLabel htmlFor="formatted-text-mask-input">
             primary phone number
@@ -419,7 +444,7 @@ class OutlinedTextFields extends React.Component {
           onClick={this.snackbarClose}
         />
        </Grid>
-      </form>
+
       </div>
     );
   }
