@@ -124,7 +124,7 @@ class ClinicInput extends React.Component {
         for (let clinic of response.data) {
           clinics.push({ label: clinic.name, latitude: clinic.latitude, longitude: clinic.longitude });
         }
-        const sortedClinics = villages.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+        const sortedClinics = clinics.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
         this.setState({
           clinicDB: sortedClinics,
         });
@@ -141,25 +141,23 @@ class ClinicInput extends React.Component {
 
   addClinic = event => {
     event.preventDefault();
-    let lat, lon;
-    if (!this.state.latitude || this.state.latitude === undefined) {
-      lat = this.state.latitudeAssign
-    } else lat = this.state.latitude
-    if (!this.state.longitude || this.state.longitude === undefined) {
-      lon = this.state.longitudeAssign
-    } else lon = this.state.longitude
-    let villageName
-    if(this.state.village){
-      villageName = this.state.village.value
-    } else {
-      villageName = "coordinates entered"
-    }
+    // let lat, lon;
+    // if (!this.state.latitude || this.state.latitude === undefined) {
+    //   lat = this.state.latitudeAssign
+    // } else lat = this.state.latitude
+    // if (!this.state.longitude || this.state.longitude === undefined) {
+    //   lon = this.state.longitudeAssign
+    // } else lon = this.state.longitude
+    // let villageName
+    // if(this.state.village){
+    //   villageName = this.state.village.value
+    // } else {
+    //   villageName = "coordinates entered"
+    // }
     const info = {
       name: `${this.state.firstname} ${this.state.lastname}`,
-      latitude: lat,
-      longitude: lon,
       phone: this.state.textmask,
-      village: villageName,
+      // village: villageName,
     };
 
     const header = {
