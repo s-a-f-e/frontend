@@ -164,10 +164,12 @@ class OutlinedTextFields extends React.Component {
       longitude: lon,
       phone: this.state.textmask,
       village: villageName,
-      dueMonth: this.state.month,
+      dueMonth: this.state.month.value,
       dueYear:this.state.year,
       hasComplications: this.state.hasComplications
     };
+
+    console.log("INFO OBJ", info);
 
     const header = {
       headers: {
@@ -216,7 +218,7 @@ class OutlinedTextFields extends React.Component {
   };
 
   handleChange = name => event => {
-    console.log(name,"log")
+    // console.log(name,"log")
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -245,14 +247,14 @@ class OutlinedTextFields extends React.Component {
   };
 
   monthChanged = name => value => {
-    console.log("name:", name, " value:", value)
+    // console.log("name:", name, " value:", value)
     this.setState({
       [name]: value,
     });
   };
 
   yearChanged = name => value => {
-    console.log("name",name," value:", value)
+    // console.log("name",name," value:", value)
     this.setState({
       [name]: value.value,
     });
