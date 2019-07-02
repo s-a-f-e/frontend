@@ -21,6 +21,11 @@ class MotherForm extends React.Component {
         </Link>
         <Link 
         style={{ textDecoration: 'none'}}
+        to='/clinic'>
+          <Button>Click Here To Clinic Employee</Button>
+        </Link>
+        <Link 
+        style={{ textDecoration: 'none'}}
         to='/data'>
           <Button> View Existing Mother/Drivers</Button>
         </Link>
