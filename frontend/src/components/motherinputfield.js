@@ -164,8 +164,8 @@ class OutlinedTextFields extends React.Component {
       longitude: lon,
       phone: this.state.textmask,
       village: villageName,
-      dueMonth: this,state,month,
-      dueYear: this.state.year,
+      dueMonth: this.state.month,
+      dueYear:this.state.year,
       hasComplications: this.state.hasComplications
     };
 
