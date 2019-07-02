@@ -109,7 +109,8 @@ class OutlinedTextFields extends React.Component {
     villageDB: [],
     month:'',
     year:'',
-    currentYear:''
+    currentYear:'',
+    hasComplications: false
   };
 
   componentDidMount() {
@@ -163,8 +164,9 @@ class OutlinedTextFields extends React.Component {
       longitude: lon,
       phone: this.state.textmask,
       village: villageName,
-      // month:'',
-      // year:''
+      dueMonth: this.state.month,
+      dueYear:this.state.year,
+      hasComplications: this.state.hasComplications
     };
 
     const header = {
