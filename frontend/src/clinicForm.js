@@ -1,10 +1,10 @@
 import React from "react";
-import Inputs from "./components/driverinputfield";
+import Inputs from "./components/clinicInputfield";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Image from './image'
 
-class DriverForm extends React.Component {
+class ClinicForm extends React.Component {
   render() {
     return (
       <> 
@@ -20,10 +20,10 @@ class DriverForm extends React.Component {
           <Button>Click Here to Add Mothers</Button>
           </Link>
           <Link 
-        style={{ textDecoration: 'none'}}
-        to='/clinic'>
-          <Button>Click Here To Clinic Employee</Button>
-        </Link>
+          style={{ textDecoration: 'none'}}
+          to="/drivers">
+          <Button>Click Here to Add Drivers</Button>
+          </Link>
           <Link 
           style={{ textDecoration: 'none'}}
           to='/data'>
@@ -47,4 +47,4 @@ class DriverForm extends React.Component {
   }
 }
 
-export default DriverForm;
+export default ClinicForm;

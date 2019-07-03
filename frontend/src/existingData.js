@@ -11,6 +11,7 @@ class Data extends React.Component {
   state = {
     mothers: [],
     drivers: [],
+    clinic: [],
   };
 
   componentDidMount() {
@@ -22,6 +23,7 @@ class Data extends React.Component {
 
     const mothers = [];
     const drivers = [];
+    const clinic = [];
 
     axios
       .get(`https://saferides.herokuapp.com/api/mothers/`, header)
@@ -50,11 +52,25 @@ class Data extends React.Component {
       .catch(err => {
         console.error('axios err:', err);
       });
+
+      // axios
+      // .get(`https://saferides.herokuapp.com/api/drivers/`, header)
+      // .then(response => {
+      //   for (let employee of response.data) {
+      //     drivers.push({ name: employee.name, latitude: employee.latitude, longitude: employee.longitude, phone: employee.phone, });
+      //   }
+      //   this.setState({
+      //     drivers,
+      //   });
+      // })
+      // .catch(err => {
+      //   console.error('axios err:', err);
+      // });
   }
 
   render() {
     const {
-      mothers,drivers
+      mothers,drivers,clinic
     } = this.state;
     return (
       <>
@@ -70,18 +86,28 @@ class Data extends React.Component {
           <Button>Click Here to Add Mothers</Button>
           </Link>
           <Link 
+        style={{ textDecoration: 'none'}}
+        to='/clinic'>
+          <Button>Click Here To Clinic Employee</Button>
+        </Link>
+          <Link 
           style={{ textDecoration: 'none'}}
           to='/drivers'>
           <Button>Click Here to Add Drivers</Button>
         </Link>
         </div>
-           <h1 className="welcome3">List of Mothers and Drivers</h1>
+           <h1 className="welcome3">List of Mothers, Drivers, and Employees</h1>
           <MotherTable
             data={mothers}
           /> 
           <DriverTable
             info={drivers}
           />
+          {/* <ClinicTable
+            employee={clinic}
+          /> */}
+
+          
       </div>
       </div>
       </>

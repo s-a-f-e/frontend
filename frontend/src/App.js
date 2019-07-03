@@ -8,6 +8,7 @@ import { Route, Switch} from "react-router-dom";
 import Login from "./components/login";
 import LandingPage from './landingPage'
 import LearnMore from "./components/LearnMore";
+import ClinicForm from './clinicForm'
 
 class App extends React.Component {
   render() {
@@ -22,12 +23,9 @@ class App extends React.Component {
           
 
               <Route exact path="/drivers" render={props => <DriverForm {...props} />} />
-              <Route
-                exact
-                path="/mothers"
-                render={props => <MotherForm {...props} />}
-              />
+              <Route exact path="/mothers" render={props => <MotherForm {...props} />}/>
               <Route path="/data" exact render={props => <Data {...props} />} />
+              {/* <Route exact path="/clinic" render={props => <ClinicForm {...props} />}/> */}
 
           
         </div>
