@@ -96,16 +96,11 @@ class ClinicInput extends React.Component {
   state = {
     firstname: '',
     lastname: '',
-    latitude: '',
-    longitude: '',
-    latitudeAssign: '',
-    longitudeAssign: '',
     textmask: ' ',
     openSnackbar: false,
     snackbarMessage: '',
     snackbarVariant: '',
     clinic: null,
-    checkedA: true,
     clinicDB: [],
   };
 
@@ -119,7 +114,7 @@ class ClinicInput extends React.Component {
     const clinics = [];
 
     axios
-      .get(`https://saferides.herokuapp.com/api/villages/`, header)
+      .get('http://saferides.herokuapp.com/api/healthcenters', header)
       .then(response => {
         for (let clinic of response.data) {
           clinics.push({ label: clinic.name, latitude: clinic.latitude, longitude: clinic.longitude });
@@ -132,28 +127,11 @@ class ClinicInput extends React.Component {
       .catch(err => {
         console.error('axios err:', err);
       });
-
-     const recentYear = this.getYear()
-     this.setState({
-       year:recentYear
-     })
   }
 
   addClinic = event => {
     event.preventDefault();
-    // let lat, lon;
-    // if (!this.state.latitude || this.state.latitude === undefined) {
-    //   lat = this.state.latitudeAssign
-    // } else lat = this.state.latitude
-    // if (!this.state.longitude || this.state.longitude === undefined) {
-    //   lon = this.state.longitudeAssign
-    // } else lon = this.state.longitude
-    // let villageName
-    // if(this.state.village){
-    //   villageName = this.state.village.value
-    // } else {
-    //   villageName = "coordinates entered"
-    // }
+
     const info = {
       name: `${this.state.firstname} ${this.state.lastname}`,
       phone: this.state.textmask,
@@ -191,8 +169,6 @@ class ClinicInput extends React.Component {
       this.setState({
         firstname: '',
         lastname: '',
-        latitude: '',
-        longitude: '',
         textmask: ' ',
         clinic: '',
       });
@@ -219,19 +195,9 @@ class ClinicInput extends React.Component {
 
   handledChanged = name => value => {
     let vill = this.state.villageDB;
-    let lat,lon;
-    
-    for (let i = 0; i < vill.length; i++) {
-      if (vill[i].label === value.label) {
-        lat = vill[i].latitude;
-        lon = vill[i].longitude;
-        
-      }
-    }
+
     this.setState({
       [name]: value,
-      latitudeAssign: lat,
-      longitudeAssign: lon
     });
   };
 
@@ -244,8 +210,6 @@ class ClinicInput extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const disabled = !!this.state.checkedA;
-    const enabled = !this.state.checkedA;
     const options = this.state.clinicDB.map(suggestion => ({
       value: suggestion.label,
       label: suggestion.label,
@@ -255,7 +219,7 @@ class ClinicInput extends React.Component {
       <div class = 'mother-content'>
       <form className={classes.container} noValidate autoComplete="off">
         <Typography className={classes.mother} variant="h6" component="h6">
-          Clinic Employee Info
+          Mid-Wife Info
         </Typography>
         <div className="thename">
           <TextField
@@ -281,49 +245,10 @@ class ClinicInput extends React.Component {
             variant="outlined"
           />
         </div>
-        {/* <FormGroup class="switch">
-          <Typography class='title'>Pick Village from Menu</Typography>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={this.state.checkedA}
-                onChange={this.handlerChanger('checkedA')}
-                value="checkedA"
-                color="primary"
-              />
-            }
-          />
-           <Typography class='title'>Enter Coordinates Manually</Typography>
-        </FormGroup> */}
-        <div className="lat">
-          <TextField
-            disabled={enabled}
-            id="outlined-name"
-            label="Latitude"
-            name="latitude"
-            className={classes.textField}
-            value={this.state.latitude}
-            onChange={this.handleChange('name')}
-            margin="normal"
-            variant="outlined"
-          />
-          <div className="long">
-            <TextField
-              disabled={enabled}
-              id="outlined-name"
-              label="Longitude"
-              name="longitude"
-              className={classes.textField}
-              value={this.state.longitude}
-              onChange={this.handleChange('name')}
-              margin="normal"
-              variant="outlined"
-            />
-          </div>
-          <div className="village">
+          <div className="clinic">
             <NoSsr>
               <Select
-                isDisabled={disabled}
+                
                 className={classes.select}
                 classes={classes}
                 options={options}
@@ -334,10 +259,8 @@ class ClinicInput extends React.Component {
               />
             </NoSsr>
           </div>
-      
-        </div>
         </form>
-        <FormControl className={classes.formControl} class="phone4">
+        <FormControl className={classes.formControl} class="phone5">
           <InputLabel htmlFor="formatted-text-mask-input">
             primary phone number
           </InputLabel>

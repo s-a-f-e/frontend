@@ -112,6 +112,11 @@ margin-left: 183px;
   right: 0px;
   bottom: 49px;
 }
+.clinic {
+  position: relative;
+  right: 99px;
+  bottom: 49px;
+}
 .month {
   position: relative;
   right: 99px;
@@ -144,7 +149,12 @@ margin-left: 183px;
   position: relative;
   right: -130px;
   bottom: 324px;
+}
 
+.phone5 {
+  position: relative;
+  right: -130px;
+  bottom: 95px;
 }
 
 .switch {
