@@ -135,7 +135,7 @@ class ClinicInput extends React.Component {
     const info = {
       name: `${this.state.firstname} ${this.state.lastname}`,
       phone: this.state.textmask,
-      // village: villageName,
+      clinic: this.state.clinic,
     };
 
     const header = {

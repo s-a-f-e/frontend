@@ -28,10 +28,10 @@ const rows = [
     label: 'Phone',
   },
   {
-    id: 'village',
+    id: 'clinic',
     numeric: false,
     disablePadding: false,
-    label: 'Village',
+    label: 'clinic',
   },
 ];
 
@@ -92,7 +92,7 @@ let EnhancedTableToolbar = props => {
     >
       <div className={classes.title}>
           <Typography variant="h6" id="tableTitle">
-            Clinic Employees
+            Mid-Wives
           </Typography>
       </div>
       <div className={classes.spacer} />
@@ -153,7 +153,7 @@ class ClinicTable extends React.Component {
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
-            //   rowCount={employee.length}
+             rowCount={employee.length}
             />
             <TableBody>
               {loading
@@ -165,7 +165,7 @@ class ClinicTable extends React.Component {
                         <TableRow
                           hover
                           tabIndex={-1}
-                        //   key={employee.mothers}
+                          key={employee.mothers}
                         >
                           <TableCell
                             component="th"
@@ -173,18 +173,18 @@ class ClinicTable extends React.Component {
                             align="center"
                             padding="none"
                           >
-                            {/* {employee.name} */}
+                            {employee.name}
                           </TableCell>
                           <TableCell padding="dense" align="center">
-                            {/* {employee.phone} */}
+                            {employee.phone}
                           </TableCell>
                           <TableCell padding="dense" align="center">
-                            {/* {employee.village} */}
+                            {employee.village}
                           </TableCell>
                         </TableRow>
                       );
                     })}
-              {emptyRows > 0 && !loading && data.length > 0 ? (
+              {emptyRows > 0 && !loading && employee.length > 0 ? (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
@@ -193,18 +193,18 @@ class ClinicTable extends React.Component {
           </Table>
           {loading ? (
             <Loading className={classes.loader} size={40} />
-          ) : data.length === 0 ? (
+          ) : employee.length === 0 ? (
             <EmptyPage
               className={classes.emptyPage}
               variant="h4"
-              message="No Mothers"
+              message="No Mid-Wives"
             />
           ) : null}
         </div>
         <TablePagination
           rowsPerPageOptions={[5]}
           component="div"
-        //   count={employee.length}
+          count={employee.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
