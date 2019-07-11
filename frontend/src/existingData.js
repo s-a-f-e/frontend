@@ -54,19 +54,19 @@ class Data extends React.Component {
         console.error('axios err:', err);
       });
 
-      // axios
-      // .get(`https://saferides.herokuapp.com/api/drivers/`, header)
-      // .then(response => {
-      //   for (let employee of response.data) {
-      //     drivers.push({ name: employee.name, latitude: employee.latitude, longitude: employee.longitude, phone: employee.phone, });
-      //   }
-      //   this.setState({
-      //     drivers,
-      //   });
-      // })
-      // .catch(err => {
-      //   console.error('axios err:', err);
-      // });
+      axios
+      .get(`https://saferides.herokuapp.com/api/midwives/`, header)
+      .then(response => {
+        for (let employee of response.data) {
+          clinic.push({ name: employee.name, healthcenter: employee.healthcenter, latitude: employee.latitude, longitude: employee.longitude, phone: employee.phone, });
+        }
+        this.setState({
+          clinic,
+        });
+      })
+      .catch(err => {
+        console.error('axios err:', err);
+      });
   }
 
   render() {

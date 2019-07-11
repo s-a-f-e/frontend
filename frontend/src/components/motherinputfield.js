@@ -46,7 +46,7 @@ const styles = theme => ({
     margin: theme.spacing(1),
   },
   birth: {
-    bottom: 27,
+    bottom: 70,
     position: 'relative',
     marginLeft: 58
   },
@@ -158,11 +158,13 @@ class OutlinedTextFields extends React.Component {
     } else {
       villageName = "coordinates entered"
     }
+    const removed = this.state.textmask.replace(/-/g, "")
+    const filteredPhone = removed.replace(/\s/g, '')
     const info = {
       name: `${this.state.firstname} ${this.state.lastname}`,
       latitude: lat,
       longitude: lon,
-      phone: this.state.textmask,
+      phone: filteredPhone,
       village: villageName,
       dueMonth: this.state.month.value,
       dueYear:this.state.year,
