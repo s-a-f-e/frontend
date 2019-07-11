@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import {Link} from 'react-router-dom';
 import MotherTable from './components/motherTable'
 import DriverTable from './components/driverTable'
+import ClinicTable from './components/clinicTable'
 import axios from 'axios';
 import Image from './image'
 
@@ -103,9 +104,9 @@ class Data extends React.Component {
           <DriverTable
             info={drivers}
           />
-          {/* <ClinicTable
+          <ClinicTable
             employee={clinic}
-          /> */}
+          />
 
           
       </div>
