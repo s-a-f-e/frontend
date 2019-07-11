@@ -27,7 +27,7 @@ class ClinicForm extends React.Component {
           <Link 
           style={{ textDecoration: 'none'}}
           to='/data'>
-          <Button>View Existing Mother/Drivers</Button>
+          <Button>View Existing Mother/Drivers/Mid-Wives</Button>
         </Link>
         </div>
         <h1 class="welcome">Welcome to Safe Mothers, Safe Babies</h1>

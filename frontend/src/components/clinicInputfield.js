@@ -10,9 +10,6 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import CustSnackbar from './snackbar/CustSnackbar';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import Select from 'react-select';
 import NoSsr from '@material-ui/core/NoSsr';
 import Grid from '@material-ui/core/Grid';
@@ -96,6 +93,8 @@ class ClinicInput extends React.Component {
   state = {
     firstname: '',
     lastname: '',
+    latitude: '',
+    longitude: '',
     textmask: ' ',
     openSnackbar: false,
     snackbarMessage: '',
@@ -131,13 +130,16 @@ class ClinicInput extends React.Component {
 
   addClinic = event => {
     event.preventDefault();
-
+    const removed = this.state.textmask.replace(/-/g, "")
+    const filteredPhone = removed.replace(/\s/g, '')
     const info = {
       name: `${this.state.firstname} ${this.state.lastname}`,
-      phone: this.state.textmask,
-      clinic: this.state.clinic,
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
+      phone: filteredPhone,
+      healthcenter: this.state.clinic.value
     };
-
+console.log(info,"info")
     const header = {
       headers: {
         authorization: `${localStorage.getItem('token')}`,
@@ -146,7 +148,7 @@ class ClinicInput extends React.Component {
 
     if (this.state.textmask.length > 1) {
       axios
-        .post(`https://saferides.herokuapp.com/api/mothers/`, info, header)
+        .post(`https://saferides.herokuapp.com/api/midwives/`, info, header)
         .then(response => {
           this.setState({
             openSnackbar: true,
@@ -169,6 +171,8 @@ class ClinicInput extends React.Component {
       this.setState({
         firstname: '',
         lastname: '',
+        latitude: '',
+        longitude: '',
         textmask: ' ',
         clinic: '',
       });
@@ -194,10 +198,20 @@ class ClinicInput extends React.Component {
   };
 
   handledChanged = name => value => {
-    let vill = this.state.villageDB;
-
+    let clinic = this.state.clinicDB;
+    let lat,lon;
+    
+    for (let i = 0; i < clinic.length; i++) {
+      if (clinic[i].label === value.label) {
+        lat = clinic[i].latitude;
+        lon = clinic[i].longitude;
+        
+      }
+    }
     this.setState({
       [name]: value,
+      latitude: lat,
+      longitude: lon
     });
   };
 
@@ -253,7 +267,7 @@ class ClinicInput extends React.Component {
                 classes={classes}
                 options={options}
                 value={this.state.clinic}
-                onChange={this.handledChanged('Clinic')}
+                onChange={this.handledChanged('clinic')}
                 placeholder="Clinic"
                 isClearable
               />

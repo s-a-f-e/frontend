@@ -179,7 +179,7 @@ class ClinicTable extends React.Component {
                             {employee.phone}
                           </TableCell>
                           <TableCell padding="dense" align="center">
-                            {employee.village}
+                            {employee.healthcenter}
                           </TableCell>
                         </TableRow>
                       );
